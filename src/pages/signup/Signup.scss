@@ -1,0 +1,47 @@
+.signup {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: teal;
+  height: 100vh;
+
+  &__container {
+    background-color: #f0f8ff;
+    border-radius: 5px;
+    padding: 30px 20px;
+  }
+  &__name {
+    display: flex;
+    flex-direction: column;
+  }
+  &__email {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__password {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__button {
+    width: 17rem;
+  }
+
+  &__button-login {
+    display: inline-block;
+    width: 17rem;
+    background-color: #007bff; /* Example color, you can change it */
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  &__error {
+    color: red;
+  }
+}
