@@ -1,5 +1,5 @@
 import "./Signup.scss";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import Validation from "./SignupValidation";
@@ -18,6 +18,11 @@ function Signup() {
       [event.target.name]: event.target.value,
     }));
   };
+
+  useEffect(() => {
+    setErrors(Validation(values));
+  }, [values]);
+
   const handleSubmit = (event) => {
     event.preventDefault();
     setErrors(Validation(values));
