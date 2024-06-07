@@ -27,7 +27,7 @@ function Login() {
     setErrors(Validation(values));
     if (errors.email === "" && errors.password === "") {
       axios
-        .post("http://localhost:8081/login", values)
+        .post("http://localhost:8081/api/login", values)
         .then((res) => {
           if (res.data === "Success") {
             navigate("/home");

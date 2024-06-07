@@ -28,13 +28,27 @@ function Signup() {
     setErrors(Validation(values));
     if (errors.name === "" && errors.email === "" && errors.password === "") {
       axios
-        .post("http://localhost:8081/signup", values)
+        .post("http://localhost:8081/api/signup", values)
         .then((res) => {
           navigate("/");
         })
-        .catch((err) => console.log(err));
+        .catch((err) => {
+          if (
+            err.response &&
+            err.response.data &&
+            err.response.data.error === "Email already in use"
+          ) {
+            setErrors((prevErrors) => ({
+              ...prevErrors,
+              email: "Email already in use",
+            }));
+          } else {
+            console.log(err);
+          }
+        });
     }
   };
+
   return (
     <div className="signup">
       <div className="signup__container">
