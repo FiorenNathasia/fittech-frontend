@@ -25,6 +25,11 @@
     flex-direction: column;
   }
 
+  &__confirmPassword {
+    display: flex;
+    flex-direction: column;
+  }
+
   &__button {
     width: 17rem;
   }

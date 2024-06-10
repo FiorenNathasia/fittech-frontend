@@ -9,9 +9,12 @@ function Signup() {
     name: "",
     email: "",
     password: "",
+    confirmPassword: "",
   });
   const navigate = useNavigate();
+
   const [errors, setErrors] = useState({});
+
   const handleInput = (event) => {
     setValues((prev) => ({
       ...prev,
@@ -26,7 +29,12 @@ function Signup() {
   const handleSubmit = (event) => {
     event.preventDefault();
     setErrors(Validation(values));
-    if (errors.name === "" && errors.email === "" && errors.password === "") {
+    if (
+      errors.name === "" &&
+      errors.email === "" &&
+      errors.password === "" &&
+      errors.confirmPassword === ""
+    ) {
       axios
         .post("http://localhost:8081/api/signup", values)
         .then((res) => {
@@ -88,6 +96,18 @@ function Signup() {
             />
             {errors.password && (
               <span className="signup__error">{errors.password}</span>
+            )}
+          </div>
+          <div className="signup__confirmPassword">
+            <label htmlFor="password">Confirm Password</label>
+            <input
+              type="password"
+              placeholder="Confirm Password"
+              name="confirmPassword"
+              onChange={handleInput}
+            />
+            {errors.password && (
+              <span className="signup__error">{errors.confirmPassword}</span>
             )}
           </div>
           <button type="submit" className="signup__button">

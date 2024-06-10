@@ -19,9 +19,17 @@ function Validation(values) {
   if (values.password === "") {
     error.password = "Password should not be empty";
   } else if (!password_pattern.test(values.password)) {
-    error.password = "Password Didn't match";
+    error.password = "Password does not follow password patternf";
   } else {
     error.password = "";
+  }
+
+  if (values.confirmPassword === "") {
+    error.confirmPassword = "Confirm password should not be empty";
+  } else if (values.confirmPassword !== values.password) {
+    error.confirmPassword = "Password do not match";
+  } else {
+    error.confirmPassword = "";
   }
   return error;
 }
