@@ -1,4 +1,7 @@
-.home {
+@use "../../partials/mixin" as *;
+@use "../../partials/variables" as *;
+
+.dashboard {
   width: 200px;
   height: 200px;
   padding: 20px;

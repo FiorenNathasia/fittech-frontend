@@ -1,3 +1,5 @@
+@use "../../partials/mixin" as *;
+@use "../../partials/variables" as *;
 .signup {
   display: flex;
   flex-direction: column;

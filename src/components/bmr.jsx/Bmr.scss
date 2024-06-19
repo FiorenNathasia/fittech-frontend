@@ -1,0 +1,30 @@
+@use "../../partials/mixin" as *;
+@use "../../partials/variables" as *;
+
+.bmr {
+  &__container {
+    display: flex;
+    flex-direction: column;
+    width: 20rem;
+
+    @include tablet {
+    }
+
+    @include desktop {
+    }
+  }
+
+  &__height {
+    display: flex;
+    flex-direction: column;
+  }
+  &__height-input {
+    display: flex;
+    flex-direction: row;
+  }
+
+  &__age {
+    display: flex;
+    flex-direction: column;
+  }
+}

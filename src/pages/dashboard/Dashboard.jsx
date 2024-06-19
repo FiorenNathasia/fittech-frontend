@@ -35,7 +35,7 @@ const Dashboard = () => {
   };
 
   return (
-    <div className="home">
+    <div className="ddashboard">
       <button onClick={logout}>Logout</button>
     </div>
   );
