@@ -22,20 +22,21 @@ function Login() {
     setErrors(Validation(values));
   }, [values]);
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
     setErrors(Validation(values));
     if (errors.email === "" && errors.password === "") {
-      axios
-        .post("http://localhost:8081/api/login", values)
-        .then((res) => {
-          if (res.data === "Success") {
-            navigate("/home");
-          } else {
-            alert("No record existed");
-          }
-        })
-        .catch((err) => console.log(err));
+      try {
+        const response = await axios.post(
+          "http://localhost:8081/api/login",
+          values
+        );
+        sessionStorage.setItem("accessToken", response.data.accessToken);
+        navigate("/dashboard");
+      } catch (error) {
+        console.error("Login error:", error);
+        alert("Failed to log in. Please check your credentials and try again.");
+      }
     }
   };
 

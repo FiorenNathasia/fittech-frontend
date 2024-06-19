@@ -99,14 +99,14 @@ function Signup() {
             )}
           </div>
           <div className="signup__confirmPassword">
-            <label htmlFor="password">Confirm Password</label>
+            <label htmlFor="confirmPassword">Confirm Password</label>
             <input
               type="password"
               placeholder="Confirm Password"
               name="confirmPassword"
               onChange={handleInput}
             />
-            {errors.password && (
+            {errors.confirmPassword && (
               <span className="signup__error">{errors.confirmPassword}</span>
             )}
           </div>
