@@ -1,0 +1,73 @@
+import { useState } from "react";
+import "./Signup.scss";
+import user_icon from "../Assets/person.png";
+import email_icon from "../Assets/email.png";
+import password_icon from "../Assets/password.png";
+
+function Signup() {
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+  };
+
+  return (
+    <>
+      <div className="signup">
+        <div className="signup__container">
+          <div className="signup__header">
+            <p className="signup__text">Signup</p>
+            <div className="signup__underline"></div>
+          </div>
+
+          <div className="signup__inputs">
+            <div className="signup__input">
+              <img className="signup__img" src={user_icon} alt="" />
+              <input
+                className="signup__input-box"
+                type="text"
+                value={firstName}
+                placeholder="First Name"
+                onChange={(e) => setFirstName(e.target.value)}
+              />
+              <input
+                className="sign__input-box"
+                type="text"
+                value={lastName}
+                placeholder="Last Name"
+                onChange={(e) => setLastName(e.target.value)}
+              />
+            </div>
+
+            <div className="signup__input">
+              <img className="signup__img" src={email_icon} alt="" />
+              <input
+                className="signup__input-box"
+                type="email"
+                value={email}
+                placeholder="Email"
+                onChange={(e) => setEmail(e.target.value)}
+              />
+            </div>
+
+            <div className="signup__input">
+              <img className="signup__img" src={password_icon} alt="" />
+              <input
+                className="signup__input-box"
+                type="password"
+                value={password}
+                placeholder="Password"
+                onChange={(e) => setPassword(e.target.value)}
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </>
+  );
+}
+
+export default Signup;
