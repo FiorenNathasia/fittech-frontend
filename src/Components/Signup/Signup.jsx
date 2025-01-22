@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
 import "./Signup.scss";
 import user_icon from "../Assets/person.png";
 import email_icon from "../Assets/email.png";
@@ -9,17 +11,29 @@ function Signup() {
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const navigate = useNavigate();
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
+  const handleSubmit = async () => {
+    const user = {
+      firstName,
+      lastName,
+      email,
+      password,
+    };
+    try {
+      const response = await axios.post("http://localhost:8080/signup", user);
+      navigate("/login");
+      return response;
+    } catch (error) {
+      console.log(error);
+    }
   };
-
   return (
     <>
       <div className="signup">
         <div className="signup__container">
           <div className="signup__header">
-            <p className="signup__text">Signup</p>
+            <p className="signup__text">Sign Up</p>
             <div className="signup__underline"></div>
           </div>
 
@@ -63,6 +77,9 @@ function Signup() {
                 onChange={(e) => setPassword(e.target.value)}
               />
             </div>
+          </div>
+          <div className="signup__submit-container">
+            <button onClick={handleSubmit}>Click me</button>
           </div>
         </div>
       </div>

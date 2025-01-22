@@ -1,14 +1,28 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "./Login.scss";
+import axios from "axios";
 import email_icon from "../Assets/email.png";
 import password_icon from "../Assets/password.png";
 
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const navigate = useNavigate();
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
+  const handleSubmit = async () => {
+    const user = {
+      email,
+      password,
+    };
+    try {
+      const response = await axios.post("http://localhost:8080/login", user);
+      const accessToken = response.data.data.accessToken;
+      localStorage.setItem("accessToken", accessToken);
+      navigate("/homepage");
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
