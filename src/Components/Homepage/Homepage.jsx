@@ -2,9 +2,11 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Homepage.scss";
 import axios from "axios";
+import Modal from "../Modal/Modal";
 
 function Homepage() {
   const [workouts, setWorkouts] = useState([]);
+  const [openModal, setOpenModal] = useState(false);
   const navigate = useNavigate();
 
   const fetchWorkoutList = async () => {
@@ -15,9 +17,7 @@ function Homepage() {
           Authorization: "Bearer " + token,
         },
       });
-      console.log(data);
       setWorkouts(data.data);
-      console.log(data.data);
     } catch (error) {
       console.error(error);
     }
@@ -28,7 +28,7 @@ function Homepage() {
   }, []);
 
   const logout = () => {
-    sessionStorage.removeItem("token");
+    localStorage.removeItem("accessToken");
     navigate("/login");
   };
 
@@ -45,6 +45,20 @@ function Homepage() {
               </ul>
             ))}
           </div>
+          <button
+            className="homepage__modal"
+            onClick={() => {
+              setOpenModal(true);
+            }}
+          >
+            Open
+          </button>
+          {openModal && (
+            <Modal
+              closeModal={() => setOpenModal(false)}
+              fetchWorkouts={fetchWorkoutList}
+            />
+          )}
           <button onClick={logout}>Logout</button>
         </div>
       </main>

@@ -1,0 +1,14 @@
+.protectedroute {
+  &__position {
+    display: flex;
+    justify-content: center; /* Centers horizontally */
+    align-items: center; /* Centers vertically */
+    height: 100vh; /* Makes the container take up the full viewport height */
+    text-align: center; /* Centers text inside the <p> */
+  }
+
+  &__message {
+    max-width: 300px; /* Optional: to control the width of the text */
+    line-height: 1.5; /* Optional: for better spacing between lines */
+  }
+}
