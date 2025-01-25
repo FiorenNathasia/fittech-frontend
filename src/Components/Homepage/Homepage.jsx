@@ -6,6 +6,7 @@ import Modal from "../Modal/Modal";
 
 function Homepage() {
   const [workouts, setWorkouts] = useState([]);
+  const [user, setUser] = useState(null);
   const [openModal, setOpenModal] = useState(false);
   const navigate = useNavigate();
 
@@ -23,8 +24,23 @@ function Homepage() {
     }
   };
 
+  const fetchUsername = async () => {
+    const token = localStorage.getItem("accessToken");
+    try {
+      const { data } = await axios.get("http://localhost:8080/user", {
+        headers: {
+          Authorization: "Bearer " + token,
+        },
+      });
+      setUser(data.data.firstName);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   useEffect(() => {
     fetchWorkoutList();
+    fetchUsername();
   }, []);
 
   const logout = () => {
@@ -36,6 +52,7 @@ function Homepage() {
     <>
       <main className="homepage">
         <div className="homepage__container">
+          <p>Welcome back {user}</p>
           <div className="homepage__list">
             {workouts.map((workout) => (
               <ul key={workout.id}>
