@@ -4,32 +4,42 @@ import axios from "axios";
 
 function Modal({ closeModal, fetchWorkouts }) {
   const [url, setUrl] = useState("");
-  const [isLoading, setIsLoading] = useState(true);
+  const [isSaving, setIsSaving] = useState(false);
   const [error, setError] = useState(null);
 
   const handleSubmit = async () => {
+    setIsSaving(true);
     const token = localStorage.getItem("accessToken");
     const workout = {
       video_url: url,
     };
-    setIsLoading(false);
     try {
-      const response = await axios.post(
-        "http://localhost:8080/api/workouts/",
-        workout,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
+      await axios.post("http://localhost:8080/api/workouts/", workout, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
       closeModal();
       fetchWorkouts();
-      setIsLoading(true);
     } catch (error) {
       setError(error.response.data.message);
     }
+    setIsSaving(false);
   };
+
+  // // isLoading is FALSE -> Flasey
+  // {isLoading ? "Save" : "Saving..."}
+
+  // if(isLoading) {
+  //   return "Save"
+  // } else {
+  //   return "Saving..."
+  // }
+
+  // if the value of isLoading is true - we return "Save"
+  // if the value of isLoading is false = we return "Saving..."
+  // when Modal first mounts - the initial value of isLoading is false
+  // therefore we initially expect the button to say "Saving..."
 
   return (
     <>
@@ -46,7 +56,7 @@ function Modal({ closeModal, fetchWorkouts }) {
               value={url}
               placeholder="workout url"
               onChange={(e) => setUrl(e.target.value)}
-              disabled={!isLoading}
+              disabled={isSaving}
             ></input>
             {error && <div style={{ color: "black" }}>{error}</div>}
           </div>
@@ -54,14 +64,14 @@ function Modal({ closeModal, fetchWorkouts }) {
             <button
               className="modal__submits"
               onClick={handleSubmit}
-              disabled={!isLoading}
+              disabled={isSaving}
             >
-              {isLoading ? "Save" : "Saving..."}
+              {isSaving ? "Saving..." : "Save"}
             </button>
             <button
               className="modal__cancel"
               onClick={() => closeModal()}
-              disabled={!isLoading}
+              disabled={isSaving}
             >
               Cancel
             </button>
