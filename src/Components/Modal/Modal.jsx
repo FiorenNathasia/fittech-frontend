@@ -12,11 +12,15 @@ function Modal({ closeModal, fetchWorkouts }) {
     };
     console.log(workout);
     try {
-      const response = await axios.post("http://localhost:8080/save", workout, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      const response = await axios.post(
+        "http://localhost:8080/api/workouts/",
+        workout,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
       closeModal();
       fetchWorkouts();
     } catch (error) {

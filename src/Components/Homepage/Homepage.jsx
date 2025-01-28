@@ -3,9 +3,10 @@ import { useNavigate } from "react-router-dom";
 import "./Homepage.scss";
 import axios from "axios";
 import Modal from "../Modal/Modal";
+import WorkoutList from "../WorkoutList/WorkoutList";
 
 function Homepage() {
-  const [workouts, setWorkouts] = useState([]);
+  const [workoutsList, setWorkoutsList] = useState([]);
   const [user, setUser] = useState(null);
   const [openModal, setOpenModal] = useState(false);
   const navigate = useNavigate();
@@ -13,26 +14,26 @@ function Homepage() {
   const fetchWorkoutList = async () => {
     const token = localStorage.getItem("accessToken");
     try {
-      const { data } = await axios.get("http://localhost:8080/workouts", {
+      const { data } = await axios.get("http://localhost:8080/api/workouts", {
         headers: {
           Authorization: "Bearer " + token,
         },
       });
-      setWorkouts(data.data);
+      setWorkoutsList(data.data);
     } catch (error) {
       console.error(error);
     }
   };
 
-  const fetchUsername = async () => {
+  const fetchUser = async () => {
     const token = localStorage.getItem("accessToken");
     try {
-      const { data } = await axios.get("http://localhost:8080/user", {
+      const { data } = await axios.get("http://localhost:8080/api/user", {
         headers: {
           Authorization: "Bearer " + token,
         },
       });
-      setUser(data.data.firstName);
+      setUser(data.data);
     } catch (error) {
       console.error(error);
     }
@@ -40,7 +41,7 @@ function Homepage() {
 
   useEffect(() => {
     fetchWorkoutList();
-    fetchUsername();
+    fetchUser();
   }, []);
 
   const logout = () => {
@@ -50,17 +51,11 @@ function Homepage() {
 
   return (
     <>
-      <main className="homepage">
+      <div className="homepage">
         <div className="homepage__container">
-          <p>Welcome back {user}</p>
+          <p>Welcome back {user?.firstName}</p>
           <div className="homepage__list">
-            {workouts.map((workout) => (
-              <ul key={workout.id}>
-                <div className="homepage__workout" title={workout.title}>
-                  {workout.title}
-                </div>
-              </ul>
-            ))}
+            <WorkoutList workouts={workoutsList} />
           </div>
           <button
             className="homepage__modal"
@@ -78,7 +73,7 @@ function Homepage() {
           )}
           <button onClick={logout}>Logout</button>
         </div>
-      </main>
+      </div>
     </>
   );
 }

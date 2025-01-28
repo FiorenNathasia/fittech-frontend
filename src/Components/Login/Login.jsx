@@ -8,6 +8,7 @@ import password_icon from "../Assets/password.png";
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState(null);
   const navigate = useNavigate();
 
   const handleSubmit = async () => {
@@ -16,13 +17,21 @@ function Login() {
       password,
     };
     try {
-      const response = await axios.post("http://localhost:8080/login", user);
+      const response = await axios.post(
+        "http://localhost:8080/api/auth/login",
+        user
+      );
       const accessToken = response.data.data.accessToken;
       localStorage.setItem("accessToken", accessToken);
-      navigate("/homepage");
+      navigate("/");
     } catch (error) {
       console.log(error);
+      setError(error.response.data.message);
     }
+  };
+  const signup = () => {
+    localStorage.removeItem("accessToken");
+    navigate("/signup");
   };
 
   return (
@@ -45,7 +54,6 @@ function Login() {
                 onChange={(e) => setEmail(e.target.value)}
               />
             </div>
-
             <div className="login__input">
               <img className="login__img" src={password_icon} alt="" />
               <input
@@ -55,10 +63,13 @@ function Login() {
                 placeholder="Password"
                 onChange={(e) => setPassword(e.target.value)}
               />
-            </div>
+            </div>{" "}
+            {error && <div className="login__message">{error}</div>}
           </div>
+
           <div className="login__submit-container">
-            <button onClick={handleSubmit}>Click me</button>
+            <button onClick={handleSubmit}>Submit</button>
+            <button onClick={signup}>Signup</button>
           </div>
         </div>
       </div>

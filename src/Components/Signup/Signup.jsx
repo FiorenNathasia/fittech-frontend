@@ -11,6 +11,7 @@ function Signup() {
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState(null);
   const navigate = useNavigate();
 
   const handleSubmit = async () => {
@@ -21,13 +22,23 @@ function Signup() {
       password,
     };
     try {
-      const response = await axios.post("http://localhost:8080/signup", user);
+      const response = await axios.post(
+        "http://localhost:8080/api/auth/signup",
+        user
+      );
       navigate("/login");
       return response;
     } catch (error) {
       console.log(error);
+      setError(error.response.data.message);
     }
   };
+
+  const login = () => {
+    localStorage.removeItem("accessToken");
+    navigate("/login");
+  };
+
   return (
     <>
       <div className="signup">
@@ -77,9 +88,11 @@ function Signup() {
                 onChange={(e) => setPassword(e.target.value)}
               />
             </div>
+            {error && <div className="login__message">{error}</div>}
           </div>
           <div className="signup__submit-container">
-            <button onClick={handleSubmit}>Click me</button>
+            <button onClick={handleSubmit}>Submit</button>
+            <button onClick={login}>Login</button>
           </div>
         </div>
       </div>
