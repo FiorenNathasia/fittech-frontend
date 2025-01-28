@@ -35,7 +35,6 @@ function Signup() {
   };
 
   const login = () => {
-    localStorage.removeItem("accessToken");
     navigate("/login");
   };
 

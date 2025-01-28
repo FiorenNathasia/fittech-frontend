@@ -8,6 +8,8 @@ import WorkoutList from "../WorkoutList/WorkoutList";
 function Homepage() {
   const [workoutsList, setWorkoutsList] = useState([]);
   const [user, setUser] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(null);
   const [openModal, setOpenModal] = useState(false);
   const navigate = useNavigate();
 
@@ -21,7 +23,7 @@ function Homepage() {
       });
       setWorkoutsList(data.data);
     } catch (error) {
-      console.error(error);
+      setError(error.response.data.message);
     }
   };
 
@@ -35,19 +37,32 @@ function Homepage() {
       });
       setUser(data.data);
     } catch (error) {
-      console.error(error);
+      setError(error.response.data.message);
     }
   };
 
+  const fetchPageData = async () => {
+    await fetchWorkoutList();
+    await fetchUser();
+    setIsLoading(false);
+  };
+
   useEffect(() => {
-    fetchWorkoutList();
-    fetchUser();
+    fetchPageData();
   }, []);
 
   const logout = () => {
     localStorage.removeItem("accessToken");
     navigate("/login");
   };
+
+  if (error) {
+    return <div>Cannot display dashboard</div>;
+  }
+
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <>

@@ -5,6 +5,7 @@ import ReactPlayer from "react-player";
 
 function WorkoutPage() {
   const [workout, setWorkout] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
   const { id } = useParams();
   const navigate = useNavigate();
@@ -26,17 +27,27 @@ function WorkoutPage() {
     }
   };
 
+  const fetchPageData = async () => {
+    await fetchWorkoutData();
+    setIsLoading(false);
+  };
+
   useEffect(() => {
-    fetchWorkoutData();
+    fetchPageData();
   }, []);
 
   const back = () => {
     navigate("/");
   };
 
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
+
   return (
     <>
       <div className="workoutpage">
+        {error && <div style={{ color: "black" }}>{error}</div>}
         <div className="workoutpage__container">{workout?.title}</div>
         <button onClick={back}></button>
         <ReactPlayer url={workout?.video_url} />

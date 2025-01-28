@@ -4,13 +4,15 @@ import axios from "axios";
 
 function Modal({ closeModal, fetchWorkouts }) {
   const [url, setUrl] = useState("");
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   const handleSubmit = async () => {
     const token = localStorage.getItem("accessToken");
     const workout = {
       video_url: url,
     };
-    console.log(workout);
+    setIsLoading(false);
     try {
       const response = await axios.post(
         "http://localhost:8080/api/workouts/",
@@ -23,8 +25,9 @@ function Modal({ closeModal, fetchWorkouts }) {
       );
       closeModal();
       fetchWorkouts();
+      setIsLoading(true);
     } catch (error) {
-      console.log(error);
+      setError(error.response.data.message);
     }
   };
 
@@ -43,13 +46,23 @@ function Modal({ closeModal, fetchWorkouts }) {
               value={url}
               placeholder="workout url"
               onChange={(e) => setUrl(e.target.value)}
+              disabled={!isLoading}
             ></input>
+            {error && <div style={{ color: "black" }}>{error}</div>}
           </div>
           <div className="modal__footer">
-            <button className="modal__submits" onClick={handleSubmit}>
-              Save
+            <button
+              className="modal__submits"
+              onClick={handleSubmit}
+              disabled={!isLoading}
+            >
+              {isLoading ? "Save" : "Saving..."}
             </button>
-            <button className="modal__cancel" onClick={() => closeModal()}>
+            <button
+              className="modal__cancel"
+              onClick={() => closeModal()}
+              disabled={!isLoading}
+            >
               Cancel
             </button>
           </div>

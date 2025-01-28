@@ -25,12 +25,10 @@ function Login() {
       localStorage.setItem("accessToken", accessToken);
       navigate("/");
     } catch (error) {
-      console.log(error);
       setError(error.response.data.message);
     }
   };
   const signup = () => {
-    localStorage.removeItem("accessToken");
     navigate("/signup");
   };
 
