@@ -1,7 +1,7 @@
 import "./WorkoutList.scss";
 import Workout from "../Workout/Workout";
 
-function WorkoutList({ workouts }) {
+function WorkoutList({ workouts, fetchWorkouts }) {
   return (
     <>
       <div className="workoutlist">
@@ -14,6 +14,7 @@ function WorkoutList({ workouts }) {
                 videoUrl={workout.video_url}
                 image={workout.image_url}
                 steps={workout.steps}
+                fetchWorkouts={fetchWorkouts}
               />
             </ul>
           ))}

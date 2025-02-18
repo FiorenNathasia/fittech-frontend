@@ -70,7 +70,10 @@ function Homepage() {
         <div className="homepage__container">
           <p>Welcome back {user?.firstName}</p>
           <div className="homepage__list">
-            <WorkoutList workouts={workoutsList} />
+            <WorkoutList
+              workouts={workoutsList}
+              fetchWorkouts={fetchWorkoutList}
+            />
           </div>
           <button
             className="homepage__modal"
