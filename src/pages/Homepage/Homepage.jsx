@@ -2,8 +2,8 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Homepage.scss";
 import axios from "axios";
-import Modal from "../Modal/Modal";
-import WorkoutList from "../WorkoutList/WorkoutList";
+import Modal from "../../components/Modal/Modal";
+import WorkoutList from "../../components/WorkoutList/WorkoutList";
 
 function Homepage() {
   const [workoutsList, setWorkoutsList] = useState([]);

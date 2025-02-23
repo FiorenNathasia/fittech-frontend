@@ -1,10 +1,10 @@
 import "./App.scss";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Login from "./Components/Login/Login";
-import Signup from "./Components/Signup/Signup";
-import Homepage from "./Components/Homepage/Homepage";
-import ProtectedRoute from "./Components/ProtectedRoute/ProtectedRoute"; // Import the ProtectedRoute component
-import WorkoutPage from "./Components/WorkoutPage/WorkoutPage";
+import Login from "./pages/Login/Login";
+import Signup from "./pages/Signup/Signup";
+import Homepage from "./pages/Homepage/Homepage";
+import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute"; // Import the ProtectedRoute component
+import WorkoutPage from "./pages/WorkoutPage/WorkoutPage";
 
 function App() {
   return (

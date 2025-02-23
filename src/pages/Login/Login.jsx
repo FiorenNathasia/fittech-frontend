@@ -2,8 +2,8 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Login.scss";
 import axios from "axios";
-import email_icon from "../Assets/email.png";
-import password_icon from "../Assets/password.png";
+import email_icon from "../../assets/email.png";
+import password_icon from "../../assets/password.png";
 
 function Login() {
   const [email, setEmail] = useState("");

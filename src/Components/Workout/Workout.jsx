@@ -18,7 +18,7 @@ function Workout({ id, title, image, fetchWorkouts }) {
           },
         }
       );
-      fetchWorkouts();
+      await fetchWorkouts();
     } catch (error) {
       console.log(error);
     }
