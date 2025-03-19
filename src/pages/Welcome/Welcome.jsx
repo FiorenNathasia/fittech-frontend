@@ -46,7 +46,7 @@ function Welcome() {
             TECH
           </Typography>
           <Typography sx={{ fontSize: "0.6rem" }} variant="h4" gutterBottom>
-            an all in one smart playlist for your favourite workouts
+            An all in one smart playlist for your favourite workouts
           </Typography>
         </Box>
         <Stack
@@ -54,7 +54,7 @@ function Welcome() {
           spacing={2}
           sx={{
             position: "fixed",
-            bottom: "100px",
+            bottom: "150px",
             left: "50%",
             transform: "translateX(-50%)",
             width: "auto",
@@ -67,10 +67,17 @@ function Welcome() {
               borderColor: "#4B51F4",
               borderRadius: "50px",
               width: "13rem",
+              height: "3.5rem",
+              borderWidth: "3px",
               background: "#EFEFEF",
               ":hover": {
                 bgcolor: "#282A33",
                 color: "white",
+                opacity: 0.75,
+                borderTop: "3px solid #4B51F4",
+                borderRight: "3px solid #FF6262",
+                borderBottom: "3px solid #FF6262",
+                borderLeft: "3px solid #4B51F4",
               },
               fontWeight: "bold",
               color: "black",
@@ -83,12 +90,19 @@ function Welcome() {
             onClick={signup}
             sx={{
               borderColor: "#FF6262",
+              borderWidth: "3px",
               borderRadius: "50px",
               width: "13rem",
+              height: "3.5rem",
               background: "#EFEFEF",
               ":hover": {
                 bgcolor: "#282A33",
                 color: "white",
+                opacity: 0.75,
+                borderTop: "3px solid #4B51F4",
+                borderRight: "3px solid #FF6262",
+                borderBottom: "3px solid #FF6262",
+                borderLeft: "3px solid #4B51F4",
               },
               color: "black",
               fontWeight: "bold",
