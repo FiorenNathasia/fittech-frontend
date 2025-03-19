@@ -2,9 +2,6 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import "./Signup.scss";
-import user_icon from "../../assets/person.png";
-import email_icon from "../../assets/email.png";
-import password_icon from "../../assets/password.png";
 
 function Signup() {
   const [firstName, setFirstName] = useState("");
@@ -49,7 +46,6 @@ function Signup() {
 
           <div className="signup__inputs">
             <div className="signup__input">
-              <img className="signup__img" src={user_icon} alt="" />
               <input
                 className="signup__input-box"
                 type="text"
@@ -67,7 +63,6 @@ function Signup() {
             </div>
 
             <div className="signup__input">
-              <img className="signup__img" src={email_icon} alt="" />
               <input
                 className="signup__input-box"
                 type="email"
@@ -78,7 +73,6 @@ function Signup() {
             </div>
 
             <div className="signup__input">
-              <img className="signup__img" src={password_icon} alt="" />
               <input
                 className="signup__input-box"
                 type="password"

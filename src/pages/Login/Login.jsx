@@ -1,8 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import email_icon from "../../assets/email.png";
-import password_icon from "../../assets/password.png";
 
 function Login() {
   const [email, setEmail] = useState("");
@@ -42,7 +40,6 @@ function Login() {
 
           <div className="login__inputs">
             <div className="login__input">
-              <img className="login__img" src={email_icon} alt="" />
               <input
                 className="login__input-box"
                 type="email"
@@ -52,7 +49,6 @@ function Login() {
               />
             </div>
             <div className="login__input">
-              <img className="login__img" src={password_icon} alt="" />
               <input
                 className="login__input-box"
                 type="password"
