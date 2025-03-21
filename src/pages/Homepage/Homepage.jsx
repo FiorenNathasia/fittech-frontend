@@ -4,6 +4,9 @@ import "./Homepage.scss";
 import axios from "axios";
 import Modal from "../../components/Modal/Modal";
 import WorkoutList from "../../components/WorkoutList/WorkoutList";
+//Styling
+import { Box, Container, Typography } from "@mui/material";
+import pill from "../../assets/pill.png";
 
 function Homepage() {
   const [workoutsList, setWorkoutsList] = useState([]);
@@ -66,15 +69,67 @@ function Homepage() {
 
   return (
     <>
-      <div className="homepage">
-        <div className="homepage__container">
-          <p>Welcome back {user?.firstName}</p>
-          <div className="homepage__list">
+      <Box
+        sx={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          bgcolor: "#cfe8fc",
+          height: "100vh",
+          flexDirection: "column",
+        }}
+      >
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            flexDirection: "column",
+            position: "absolute",
+            top: 0,
+            left: 0,
+            width: "100%",
+            height: "10rem",
+            borderStyle: "solid",
+            borderTop: "0px solid #4B51F4",
+            borderRight: "3px solid #FF6262",
+            borderBottom: "3px solid #FF6262",
+            borderLeft: "3px solid #4B51F4",
+            borderBottomLeftRadius: "41px",
+            borderBottomRightRadius: "41px",
+          }}
+        >
+          <Typography
+            sx={{ fontSize: "3rem", fontWeight: "700", color: "black" }}
+            variant="h2"
+          >
+            FIT
+            <img src={pill} alt="pill" width="10rem" />
+            TECH
+          </Typography>
+          <Typography
+            sx={{ fontSize: "1.25rem", fontWeight: "500", color: "black" }}
+            variant="h2"
+          >
+            Welcome back {user?.firstName}
+          </Typography>
+        </Box>
+        <Box>
+          <Container
+            sx={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              bgcolor: "#cfe8fc",
+              height: "100vh",
+              flexDirection: "column",
+            }}
+          >
             <WorkoutList
               workouts={workoutsList}
               fetchWorkouts={fetchWorkoutList}
             />
-          </div>
+          </Container>
           <button
             className="homepage__modal"
             onClick={() => {
@@ -90,8 +145,8 @@ function Homepage() {
             />
           )}
           <button onClick={logout}>Logout</button>
-        </div>
-      </div>
+        </Box>
+      </Box>
     </>
   );
 }

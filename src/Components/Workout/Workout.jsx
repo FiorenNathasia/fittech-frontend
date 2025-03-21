@@ -2,6 +2,16 @@ import "./Workout.scss";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import axios from "axios";
+//Styling
+import {
+  ListItem,
+  Button,
+  Card,
+  CardActionArea,
+  CardMedia,
+  CardContent,
+  Typography,
+} from "@mui/material";
 
 function Workout({ id, title, image, fetchWorkouts }) {
   const [isDeleting, setIsDeleting] = useState(false);
@@ -26,12 +36,32 @@ function Workout({ id, title, image, fetchWorkouts }) {
   };
   return (
     <>
-      <Link style={{ color: "black" }} to={`/workouts/${id}`}>
-        {title}
-      </Link>
-      <button onClick={handleDelete} disabled={isDeleting}>
-        {isDeleting ? "Deleting..." : "Delete"}
-      </button>
+      <ListItem sx={{ display: "flex", justifyContent: "space-between" }}>
+        <Card sx={{ maxWidth: 345 }}>
+          <CardActionArea>
+            <CardMedia component="img" image={image} alt={title} />
+            <CardContent>
+              <Typography variant="h6" component="div">
+                <Link
+                  to={`/workouts/${id}`}
+                  style={{ textDecoration: "none", color: "black" }}
+                >
+                  {title}
+                </Link>
+              </Typography>
+            </CardContent>
+            <Button
+              variant="contained"
+              color="secondary"
+              onClick={handleDelete}
+              disabled={isDeleting}
+              fullWidth
+            >
+              {isDeleting ? "Deleting..." : "Delete"}
+            </Button>
+          </CardActionArea>
+        </Card>
+      </ListItem>
     </>
   );
 }

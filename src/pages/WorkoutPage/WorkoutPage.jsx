@@ -37,7 +37,7 @@ function WorkoutPage() {
   }, []);
 
   const back = () => {
-    navigate("/");
+    navigate("/homepage");
   };
 
   if (isLoading) {
