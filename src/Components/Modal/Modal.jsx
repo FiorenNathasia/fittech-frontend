@@ -1,8 +1,9 @@
 import { useState } from "react";
 import "./Modal.scss";
 import axios from "axios";
+import { Box, TextField, Typography, Button, Modal } from "@mui/material";
 
-function Modal({ closeModal, fetchWorkouts }) {
+function ModalAdd({ closeModal, fetchWorkouts }) {
   const [url, setUrl] = useState("");
   const [isSaving, setIsSaving] = useState(false);
   const [error, setError] = useState(null);
@@ -27,59 +28,61 @@ function Modal({ closeModal, fetchWorkouts }) {
     setIsSaving(false);
   };
 
-  // // isLoading is FALSE -> Flasey
-  // {isLoading ? "Save" : "Saving..."}
-
-  // if(isLoading) {
-  //   return "Save"
-  // } else {
-  //   return "Saving..."
-  // }
-
-  // if the value of isLoading is true - we return "Save"
-  // if the value of isLoading is false = we return "Saving..."
-  // when Modal first mounts - the initial value of isLoading is false
-  // therefore we initially expect the button to say "Saving..."
-
   return (
     <>
-      <div className="modal__background">
-        <div className="modal__container">
-          <button className="modal__exit" onClick={() => closeModal()}></button>
-          <div className="modal__title">
-            <h1>Add new workout</h1>
-          </div>
-          <div className="modal__body">
-            <input
-              className="modal__input"
-              type="url"
-              value={url}
-              placeholder="workout url"
-              onChange={(e) => setUrl(e.target.value)}
-              disabled={isSaving}
-            ></input>
-            {error && <div style={{ color: "black" }}>{error}</div>}
-          </div>
-          <div className="modal__footer">
-            <button
-              className="modal__submits"
+      <Modal open={open} onClose={closeModal}>
+        <Box
+          sx={{
+            position: "absolute",
+            top: "50%",
+            left: "50%",
+            transform: "translate(-50%, -50%)",
+            width: 400,
+            bgcolor: "background.paper",
+            boxShadow: 24,
+            p: 4,
+            borderRadius: 2,
+            display: "flex",
+            flexDirection: "column",
+            gap: 2,
+          }}
+        >
+          <Typography variant="h6" sx={{ fontWeight: "bold" }}>
+            Add New Workout
+          </Typography>
+
+          <TextField
+            fullWidth
+            label="Workout URL"
+            type="url"
+            value={url}
+            onChange={(e) => setUrl(e.target.value)}
+            disabled={isSaving}
+          />
+
+          {error && (
+            <Typography color="error" sx={{ fontSize: "0.875rem" }}>
+              {error}
+            </Typography>
+          )}
+
+          <Box sx={{ display: "flex", justifyContent: "flex-end", gap: 1 }}>
+            <Button onClick={closeModal} disabled={isSaving} variant="outlined">
+              Cancel
+            </Button>
+            <Button
               onClick={handleSubmit}
               disabled={isSaving}
+              variant="contained"
+              color="primary"
             >
               {isSaving ? "Saving..." : "Save"}
-            </button>
-            <button
-              className="modal__cancel"
-              onClick={() => closeModal()}
-              disabled={isSaving}
-            >
-              Cancel
-            </button>
-          </div>
-        </div>
-      </div>
+            </Button>
+          </Box>
+        </Box>
+      </Modal>
     </>
   );
 }
 
-export default Modal;
+export default ModalAdd;

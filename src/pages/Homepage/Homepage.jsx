@@ -1,8 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import "./Homepage.scss";
 import axios from "axios";
-import Modal from "../../components/Modal/Modal";
+import ModalAdd from "../../components/Modal/Modal";
 import WorkoutList from "../../components/WorkoutList/WorkoutList";
 //Styling
 import {
@@ -12,9 +11,13 @@ import {
   BottomNavigation,
   BottomNavigationAction,
   Paper,
+  Button,
+  IconButton,
 } from "@mui/material";
-import RestoreIcon from "@mui/icons-material/Restore";
+import HomeIcon from "@mui/icons-material/Home";
 import FavoriteIcon from "@mui/icons-material/Favorite";
+import LogoutIcon from "@mui/icons-material/Logout";
+import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 import pill from "../../assets/pill.png";
 
 function Homepage() {
@@ -117,8 +120,7 @@ function Homepage() {
             width: "100%",
             height: "10rem",
             borderStyle: "solid",
-            borderTop: "0px solid #4B51F4",
-            borderRight: "3px solid #FF6262",
+            borderRight: "3px solid #4B51F4",
             borderBottom: "3px solid #FF6262",
             borderLeft: "3px solid #4B51F4",
             borderBottomLeftRadius: "41px",
@@ -139,6 +141,9 @@ function Homepage() {
           >
             Welcome back {user?.firstName}
           </Typography>
+          <IconButton onClick={logout}>
+            <LogoutIcon />
+          </IconButton>
         </Box>
         <Box>
           <Container
@@ -156,36 +161,49 @@ function Homepage() {
               fetchWorkouts={fetchWorkoutList}
             />
           </Container>
-
-          <button
-            className="homepage__modal"
-            onClick={() => {
-              setOpenModal(true);
-            }}
-          >
-            Open
-          </button>
-          {openModal && (
-            <Modal
-              closeModal={() => setOpenModal(false)}
-              fetchWorkouts={fetchWorkoutList}
-            />
-          )}
-          <button onClick={logout}>Logout</button>
         </Box>
         <Paper
-          sx={{ position: "fixed", bottom: 0, left: 0, right: 0 }}
+          sx={{
+            position: "fixed",
+            bottom: 0,
+            left: 0,
+            right: 0,
+            height: "5rem",
+          }}
           elevation={3}
         >
           <BottomNavigation>
             <BottomNavigationAction
               label="Recents"
-              icon={<RestoreIcon />}
+              icon={<HomeIcon sx={{ fontSize: "2rem", marginTop: "1rem" }} />}
               onClick={fetchWorkoutList}
             />
+            <IconButton
+              onClick={() => {
+                setOpenModal(true);
+              }}
+            >
+              <AddCircleOutlineIcon
+                sx={{
+                  fontSize: "4rem",
+                  marginTop: "1.5rem",
+                  ":hover": {
+                    color: "red",
+                  },
+                }}
+              />
+            </IconButton>
+            {openModal && (
+              <ModalAdd
+                closeModal={() => setOpenModal(false)}
+                fetchWorkouts={fetchWorkoutList}
+              />
+            )}
             <BottomNavigationAction
               label="Favorites"
-              icon={<FavoriteIcon />}
+              icon={
+                <FavoriteIcon sx={{ fontSize: "2rem", marginTop: "1rem" }} />
+              }
               onClick={fetchFavouriteWorkoutList}
             />
           </BottomNavigation>

@@ -1,4 +1,3 @@
-import "./WorkoutList.scss";
 import Workout from "../Workout/Workout";
 //Styling
 import { List } from "@mui/material";
@@ -14,7 +13,7 @@ function WorkoutList({ workouts, fetchWorkouts }) {
           position: "relative",
           overflow: "auto",
           maxHeight: 550,
-          marginTop: 15,
+          marginTop: 10,
         }}
       >
         {workouts.map((workout) => (
