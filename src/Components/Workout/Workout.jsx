@@ -1,6 +1,6 @@
 import "./Workout.scss";
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
 //Styling
 import {
@@ -11,10 +11,46 @@ import {
   CardMedia,
   CardContent,
   Typography,
+  IconButton,
 } from "@mui/material";
+import FavoriteBorder from "@mui/icons-material/FavoriteBorder";
+import DeleteIcon from "@mui/icons-material/Delete";
+import FavoriteIcon from "@mui/icons-material/Favorite";
 
 function Workout({ id, title, image, fetchWorkouts }) {
   const [isDeleting, setIsDeleting] = useState(false);
+  const [favourite, setFavourite] = useState(false);
+
+  useEffect(() => {
+    const fetchFavouriteStatus = async () => {
+      const token = localStorage.getItem("accessToken");
+      try {
+        const response = await axios.get(
+          `http://localhost:8080/api/workouts/${id}`,
+          { headers: { Authorization: "Bearer " + token } }
+        );
+        setFavourite(response.data.isFavourite);
+        console.log(response);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchFavouriteStatus();
+  }, [id]);
+
+  const handleFavourite = async () => {
+    const token = localStorage.getItem("accessToken");
+    try {
+      const updatedFavourite = await axios.put(
+        `http://localhost:8080/api/workouts/${id}/favourite`,
+        { isFavourite: !favourite },
+        { headers: { Authorization: "Bearer " + token } }
+      );
+      setFavourite(!favourite);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   const handleDelete = async () => {
     setIsDeleting(true);
@@ -34,6 +70,7 @@ function Workout({ id, title, image, fetchWorkouts }) {
     }
     setIsDeleting(false);
   };
+
   return (
     <>
       <ListItem sx={{ display: "flex", justifyContent: "space-between" }}>
@@ -50,15 +87,24 @@ function Workout({ id, title, image, fetchWorkouts }) {
                 </Link>
               </Typography>
             </CardContent>
-            <Button
-              variant="contained"
-              color="secondary"
-              onClick={handleDelete}
-              disabled={isDeleting}
-              fullWidth
+            <IconButton
+              onClick={handleFavourite}
+              variant="outlined"
+              color="neutral"
+              sx={{ mr: "auto" }}
             >
-              {isDeleting ? "Deleting..." : "Delete"}
-            </Button>
+              {favourite ? <FavoriteIcon color="error" /> : <FavoriteBorder />}
+            </IconButton>
+            <IconButton variant="outlined" color="neutral" sx={{ mr: "auto" }}>
+              <DeleteIcon
+                variant="contained"
+                color="secondary"
+                onClick={handleDelete}
+                disabled={isDeleting}
+              >
+                {isDeleting ? "Deleting..." : "Delete"}
+              </DeleteIcon>
+            </IconButton>
           </CardActionArea>
         </Card>
       </ListItem>

@@ -5,7 +5,15 @@ import axios from "axios";
 import Modal from "../../components/Modal/Modal";
 import WorkoutList from "../../components/WorkoutList/WorkoutList";
 //Styling
-import { Box, Container, Typography } from "@mui/material";
+import {
+  Box,
+  Container,
+  Typography,
+  BottomNavigation,
+  BottomNavigationAction,
+} from "@mui/material";
+import RestoreIcon from "@mui/icons-material/Restore";
+import FavoriteIcon from "@mui/icons-material/Favorite";
 import pill from "../../assets/pill.png";
 
 function Homepage() {
@@ -130,6 +138,7 @@ function Homepage() {
               fetchWorkouts={fetchWorkoutList}
             />
           </Container>
+
           <button
             className="homepage__modal"
             onClick={() => {
