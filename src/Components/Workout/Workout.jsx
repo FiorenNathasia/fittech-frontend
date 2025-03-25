@@ -29,7 +29,7 @@ function Workout({ id, title, image, fetchWorkouts }) {
           `http://localhost:8080/api/workouts/${id}`,
           { headers: { Authorization: "Bearer " + token } }
         );
-        setFavourite(response.data.isFavourite);
+        setFavourite(response.data.is_favourite);
         console.log(response);
       } catch (error) {
         console.log(error);
@@ -43,7 +43,7 @@ function Workout({ id, title, image, fetchWorkouts }) {
     try {
       const updatedFavourite = await axios.put(
         `http://localhost:8080/api/workouts/${id}/favourite`,
-        { isFavourite: !favourite },
+        { is_favourite: !favourite },
         { headers: { Authorization: "Bearer " + token } }
       );
       setFavourite(!favourite);

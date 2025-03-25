@@ -11,6 +11,7 @@ import {
   Typography,
   BottomNavigation,
   BottomNavigationAction,
+  Paper,
 } from "@mui/material";
 import RestoreIcon from "@mui/icons-material/Restore";
 import FavoriteIcon from "@mui/icons-material/Favorite";
@@ -30,6 +31,23 @@ function Homepage() {
       const { data } = await axios.get("http://localhost:8080/api/workouts", {
         headers: {
           Authorization: "Bearer " + token,
+        },
+      });
+      setWorkoutsList(data.data);
+    } catch (error) {
+      setError(error.response.data.message);
+    }
+  };
+
+  const fetchFavouriteWorkoutList = async () => {
+    const token = localStorage.getItem("accessToken");
+    try {
+      const { data } = await axios.get("http://localhost:8080/api/workouts", {
+        headers: {
+          Authorization: "Bearer " + token,
+        },
+        params: {
+          filterFavourites: true,
         },
       });
       setWorkoutsList(data.data);
@@ -155,6 +173,23 @@ function Homepage() {
           )}
           <button onClick={logout}>Logout</button>
         </Box>
+        <Paper
+          sx={{ position: "fixed", bottom: 0, left: 0, right: 0 }}
+          elevation={3}
+        >
+          <BottomNavigation>
+            <BottomNavigationAction
+              label="Recents"
+              icon={<RestoreIcon />}
+              onClick={fetchWorkoutList}
+            />
+            <BottomNavigationAction
+              label="Favorites"
+              icon={<FavoriteIcon />}
+              onClick={fetchFavouriteWorkoutList}
+            />
+          </BottomNavigation>
+        </Paper>
       </Box>
     </>
   );
