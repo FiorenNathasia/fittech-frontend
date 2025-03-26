@@ -2,6 +2,21 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import ReactPlayer from "react-player";
+//Styling
+import {
+  Box,
+  Typography,
+  Card,
+  IconButton,
+  Button,
+  List,
+  ListItem,
+  ListItemText,
+  ListItemIcon,
+} from "@mui/material";
+import OpenInNewIcon from "@mui/icons-material/OpenInNew";
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+import pill from "../../assets/pill.png";
 
 function WorkoutPage() {
   const [workout, setWorkout] = useState(null);
@@ -46,21 +61,79 @@ function WorkoutPage() {
 
   return (
     <>
-      <div className="workoutpage">
-        {error && <div style={{ color: "black" }}>{error}</div>}
-        <div className="workoutpage__container">{workout?.title}</div>
-        <button onClick={back}></button>
-        <ReactPlayer url={workout?.video_url} />
-        <a href={workout?.video_url}>
-          <button>Go to video</button>
-        </a>
-        <h1>Steps</h1>
-        <ul>
-          {workout?.steps.map((step, index) => (
-            <li key={index}>{step}</li>
-          ))}
-        </ul>
-      </div>
+      <Box>
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "row",
+            justifyContent: "center",
+            alignItems: "center",
+            position: "absolute",
+            top: 45,
+            left: 0,
+            width: "100%",
+          }}
+        >
+          <IconButton
+            onClick={back}
+            sx={{
+              color: "#4B51F4",
+            }}
+          >
+            <ArrowBackIcon />
+          </IconButton>
+          <Typography
+            sx={{ fontSize: "1.25rem", fontWeight: "700", color: "black" }}
+            variant="h2"
+          >
+            FIT
+            <img src={pill} alt="pill" width="10rem" />
+            TECH
+          </Typography>
+        </Box>
+        {error && <Typography style={{ color: "black" }}>{error}</Typography>}
+        <Card sx={{ maxWidth: "100%", margin: "0.5rem", marginTop: "7rem" }}>
+          <Box sx={{ position: "relative", paddingTop: "56.25%" }}>
+            <ReactPlayer
+              url={workout?.video_url}
+              width="100%"
+              height="100%"
+              style={{ position: "absolute", top: 0, left: 0 }}
+              controls
+            />
+          </Box>
+        </Card>
+        <Box sx={{ display: "flex", flexDirection: "row", margin: "1rem" }}>
+          <Typography>{workout?.title}</Typography>{" "}
+          <IconButton href={workout?.video_url}>
+            <OpenInNewIcon />
+          </IconButton>
+        </Box>
+        <Box sx={{ margin: "0rem 2rem" }}>
+          <Typography sx={{ fontWeight: "600", fontSize: "1.25rem" }}>
+            Steps
+          </Typography>{" "}
+        </Box>
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            flexDirection: "column",
+          }}
+        >
+          <List sx={{ width: "90%", height: "22rem", overflow: "auto" }}>
+            {workout?.steps.map((step, index) => (
+              <ListItem key={index}>
+                <ListItemIcon>
+                  <Typography variant="body1">{index + 1}.</Typography>
+                </ListItemIcon>
+                <ListItemText primary={step} />
+              </ListItem>
+            ))}
+          </List>
+        </Box>
+      </Box>
     </>
   );
 }

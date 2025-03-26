@@ -16,26 +16,9 @@ import FavoriteBorder from "@mui/icons-material/FavoriteBorder";
 import DeleteIcon from "@mui/icons-material/Delete";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 
-function Workout({ id, title, image, fetchWorkouts }) {
+function Workout({ id, title, image, isFavourite, fetchWorkouts }) {
   const [isDeleting, setIsDeleting] = useState(false);
-  const [favourite, setFavourite] = useState(false);
-
-  useEffect(() => {
-    const fetchFavouriteStatus = async () => {
-      const token = localStorage.getItem("accessToken");
-      try {
-        const response = await axios.get(
-          `http://localhost:8080/api/workouts/${id}`,
-          { headers: { Authorization: "Bearer " + token } }
-        );
-        setFavourite(response.data.is_favourite);
-        console.log(response);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    fetchFavouriteStatus();
-  }, [id]);
+  const [favourite, setFavourite] = useState(isFavourite);
 
   const handleFavourite = async () => {
     const token = localStorage.getItem("accessToken");

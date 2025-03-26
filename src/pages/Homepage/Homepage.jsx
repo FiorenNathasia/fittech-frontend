@@ -159,6 +159,7 @@ function Homepage() {
             <WorkoutList
               workouts={workoutsList}
               fetchWorkouts={fetchWorkoutList}
+              fetchFavouriteWorkoutList={fetchFavouriteWorkoutList}
             />
           </Container>
         </Box>
@@ -175,7 +176,7 @@ function Homepage() {
           <BottomNavigation>
             <BottomNavigationAction
               label="Recents"
-              icon={<HomeIcon sx={{ fontSize: "2rem", marginTop: "1rem" }} />}
+              icon={<HomeIcon />}
               onClick={fetchWorkoutList}
             />
             <IconButton
@@ -201,9 +202,7 @@ function Homepage() {
             )}
             <BottomNavigationAction
               label="Favorites"
-              icon={
-                <FavoriteIcon sx={{ fontSize: "2rem", marginTop: "1rem" }} />
-              }
+              icon={<FavoriteIcon />}
               onClick={fetchFavouriteWorkoutList}
             />
           </BottomNavigation>

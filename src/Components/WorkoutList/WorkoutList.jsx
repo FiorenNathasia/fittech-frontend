@@ -24,6 +24,7 @@ function WorkoutList({ workouts, fetchWorkouts }) {
             videoUrl={workout.video_url}
             image={workout.image_url}
             steps={workout.steps}
+            isFavourite={workout.is_favourite}
             fetchWorkouts={fetchWorkouts}
           />
         ))}
