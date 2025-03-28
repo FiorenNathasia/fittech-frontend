@@ -15,6 +15,8 @@ import {
 } from "@mui/material";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import pill from "../../assets/pill.png";
+import desktopbg from "../../assets/dekstopbg.jpg";
+import mobile from "../../assets/mobilebg.jpg";
 
 function Signup() {
   const [firstName, setFirstName] = useState("");
@@ -55,9 +57,18 @@ function Signup() {
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
-          bgcolor: "#cfe8fc",
-          height: "100vh",
           flexDirection: "column",
+          width: "100vw",
+          height: "100vh",
+          backgroundImage: `url(${mobile})`,
+          backgroundSize: "160%",
+          backgroundPosition: "center top -5px",
+          backgroundRepeat: "no-repeat",
+          "@media (min-width:600px)": {
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+            backgroundImage: `url(${desktopbg})`,
+          },
         }}
       >
         <Box
@@ -91,6 +102,7 @@ function Signup() {
             alignItems: "center",
             flexDirection: "column",
             backgroundColor: "rgba(217, 217, 217, 0.5)",
+            backdropFilter: "blur(10px)",
             height: "530px",
             width: "346px",
             borderStyle: "solid",
@@ -115,7 +127,7 @@ function Signup() {
               sx={{
                 color: "#4B51F4",
                 position: "absolute",
-                top: 190,
+                top: 50,
                 left: 35,
               }}
             >

@@ -19,6 +19,7 @@ import FavoriteIcon from "@mui/icons-material/Favorite";
 import LogoutIcon from "@mui/icons-material/Logout";
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 import pill from "../../assets/pill.png";
+import background from "../../assets/fittechbg.jpg";
 
 function Homepage() {
   const [workoutsList, setWorkoutsList] = useState([]);
@@ -103,9 +104,13 @@ function Homepage() {
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
-          bgcolor: "#cfe8fc",
-          height: "100vh",
           flexDirection: "column",
+          width: "100vw",
+          height: "100vh",
+          backgroundImage: `url(${background})`,
+          backgroundSize: "cover",
+          backgroundPosition: "left",
+          backgroundRepeat: "no-repeat",
         }}
       >
         <Box
@@ -128,7 +133,7 @@ function Homepage() {
           }}
         >
           <Typography
-            sx={{ fontSize: "3rem", fontWeight: "700", color: "black" }}
+            sx={{ fontSize: "3rem", fontWeight: "700", color: "white" }}
             variant="h2"
           >
             FIT
@@ -151,7 +156,6 @@ function Homepage() {
               display: "flex",
               justifyContent: "center",
               alignItems: "center",
-              bgcolor: "#cfe8fc",
               height: "100vh",
               flexDirection: "column",
             }}
@@ -176,8 +180,9 @@ function Homepage() {
           <BottomNavigation>
             <BottomNavigationAction
               label="Recents"
-              icon={<HomeIcon />}
+              icon={<HomeIcon sx={{ fontSize: "2.5rem" }} />}
               onClick={fetchWorkoutList}
+              sx={{ marginTop: "1rem" }}
             />
             <IconButton
               onClick={() => {
@@ -202,8 +207,9 @@ function Homepage() {
             )}
             <BottomNavigationAction
               label="Favorites"
-              icon={<FavoriteIcon />}
+              icon={<FavoriteIcon sx={{ fontSize: "2rem" }} />}
               onClick={fetchFavouriteWorkoutList}
+              sx={{ marginTop: "1rem" }}
             />
           </BottomNavigation>
         </Paper>

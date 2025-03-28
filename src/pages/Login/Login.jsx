@@ -14,6 +14,8 @@ import {
 } from "@mui/material";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import pill from "../../assets/pill.png";
+import desktopbg from "../../assets/dekstopbg.jpg";
+import mobile from "../../assets/mobilebg.jpg";
 
 function Login() {
   const [email, setEmail] = useState("");
@@ -49,9 +51,18 @@ function Login() {
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
-          bgcolor: "#cfe8fc",
+          width: "100vw",
           height: "100vh",
+          backgroundImage: `url(${mobile})`,
+          backgroundSize: "160%",
+          backgroundPosition: "center top -5px",
+          backgroundRepeat: "no-repeat",
           flexDirection: "column",
+          "@media (min-width:600px)": {
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+            backgroundImage: `url(${desktopbg})`,
+          },
         }}
       >
         <Box
@@ -85,6 +96,7 @@ function Login() {
             alignItems: "center",
             flexDirection: "column",
             backgroundColor: "rgba(217, 217, 217, 0.5)",
+            backdropFilter: "blur(10px)",
             height: "405px",
             width: "346px",
             borderStyle: "solid",
@@ -109,7 +121,7 @@ function Login() {
               sx={{
                 color: "#4B51F4",
                 position: "absolute",
-                top: 245,
+                top: 50,
                 left: 35,
               }}
             >

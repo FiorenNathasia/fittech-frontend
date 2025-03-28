@@ -23,7 +23,7 @@ function Workout({ id, title, image, isFavourite, fetchWorkouts }) {
   const handleFavourite = async () => {
     const token = localStorage.getItem("accessToken");
     try {
-      const updatedFavourite = await axios.put(
+      await axios.put(
         `http://localhost:8080/api/workouts/${id}/favourite`,
         { is_favourite: !favourite },
         { headers: { Authorization: "Bearer " + token } }

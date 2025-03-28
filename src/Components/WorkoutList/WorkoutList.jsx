@@ -9,7 +9,6 @@ function WorkoutList({ workouts, fetchWorkouts }) {
         sx={{
           width: "100%",
           maxWidth: 360,
-          bgcolor: "background.paper",
           position: "relative",
           overflow: "auto",
           maxHeight: 550,
