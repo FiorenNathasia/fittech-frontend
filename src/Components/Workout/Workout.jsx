@@ -55,15 +55,28 @@ function Workout({ id, title, image, isFavourite, fetchWorkouts }) {
 
   return (
     <>
-      <ListItem sx={{ display: "flex", justifyContent: "space-between" }}>
-        <Card sx={{ maxWidth: 345 }}>
+      <ListItem>
+        <Card
+          sx={{
+            maxWidth: 345,
+            maxHeigt: 50,
+            backgroundColor: "#525257",
+            borderRadius: "10px",
+            borderTop: "5px solid #4B51F4",
+            borderRight: "5px solid #FF6262",
+            borderBottom: "5px solid #FF6262",
+            borderLeft: "5px solid #4B51F4",
+          }}
+        >
           <CardActionArea>
             <CardMedia component="img" image={image} alt={title} />
-            <CardContent>
-              <Typography variant="h6" component="div">
+            <CardContent
+              sx={{ paddingBottom: 0.5, backgroundColor: "#525257" }}
+            >
+              <Typography variant="h6" sx={{ fontSize: "0.85rem" }}>
                 <Link
                   to={`/workouts/${id}`}
-                  style={{ textDecoration: "none", color: "black" }}
+                  style={{ textDecoration: "none", color: "#e5e5e7" }}
                 >
                   {title}
                 </Link>
@@ -73,16 +86,20 @@ function Workout({ id, title, image, isFavourite, fetchWorkouts }) {
               onClick={handleFavourite}
               variant="outlined"
               color="neutral"
-              sx={{ mr: "auto" }}
+              sx={{ marginLeft: 1 }}
             >
-              {favourite ? <FavoriteIcon color="error" /> : <FavoriteBorder />}
+              {favourite ? (
+                <FavoriteIcon color="error" sx={{ fontSize: "1.2rem" }} />
+              ) : (
+                <FavoriteIcon sx={{ fontSize: "1.2rem", color: "#919192" }} />
+              )}
             </IconButton>
-            <IconButton variant="outlined" color="neutral" sx={{ mr: "auto" }}>
+            <IconButton variant="contained" color="neutral" sx={{ mr: "auto" }}>
               <DeleteIcon
                 variant="contained"
-                color="secondary"
                 onClick={handleDelete}
                 disabled={isDeleting}
+                sx={{ fontSize: "1.2rem", color: "#919192" }}
               >
                 {isDeleting ? "Deleting..." : "Delete"}
               </DeleteIcon>

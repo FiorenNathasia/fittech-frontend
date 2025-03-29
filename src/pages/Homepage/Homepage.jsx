@@ -27,6 +27,7 @@ function Homepage() {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
   const [openModal, setOpenModal] = useState(false);
+  const [selectedTab, setSelectedTab] = useState("home");
   const navigate = useNavigate();
 
   const fetchWorkoutList = async () => {
@@ -89,6 +90,15 @@ function Homepage() {
     navigate("/login");
   };
 
+  const handleTabChange = (tab) => {
+    setSelectedTab(tab);
+    if (tab === "home") {
+      fetchWorkoutList();
+    } else if (tab === "favourites") {
+      fetchFavouriteWorkoutList();
+    }
+  };
+
   if (error) {
     return <div>Cannot display dashboard</div>;
   }
@@ -107,7 +117,7 @@ function Homepage() {
           flexDirection: "column",
           width: "100vw",
           height: "100vh",
-          backgroundImage: `url(${background})`,
+          backgroundColor: "#272728",
           backgroundSize: "cover",
           backgroundPosition: "left",
           backgroundRepeat: "no-repeat",
@@ -120,20 +130,24 @@ function Homepage() {
             alignItems: "center",
             flexDirection: "column",
             position: "absolute",
-            top: 0,
+            top: "2rem",
             left: 0,
             width: "100%",
-            height: "10rem",
-            borderStyle: "solid",
-            borderRight: "3px solid #4B51F4",
-            borderBottom: "3px solid #FF6262",
-            borderLeft: "3px solid #4B51F4",
-            borderBottomLeftRadius: "41px",
-            borderBottomRightRadius: "41px",
           }}
         >
+          {" "}
+          <IconButton
+            onClick={logout}
+            sx={{
+              position: "absolute",
+              right: "1rem",
+              color: "white",
+            }}
+          >
+            <LogoutIcon sx={{ fontSize: "1.5rem" }} />
+          </IconButton>
           <Typography
-            sx={{ fontSize: "3rem", fontWeight: "700", color: "white" }}
+            sx={{ fontSize: "2rem", fontWeight: "700", color: "white" }}
             variant="h2"
           >
             FIT
@@ -141,14 +155,11 @@ function Homepage() {
             TECH
           </Typography>
           <Typography
-            sx={{ fontSize: "1.25rem", fontWeight: "500", color: "black" }}
+            sx={{ fontSize: "1rem", fontWeight: "500", color: "white" }}
             variant="h2"
           >
             Welcome back {user?.firstName}
           </Typography>
-          <IconButton onClick={logout}>
-            <LogoutIcon />
-          </IconButton>
         </Box>
         <Box>
           <Container
@@ -171,19 +182,39 @@ function Homepage() {
           sx={{
             position: "fixed",
             bottom: 0,
-            left: 0,
-            right: 0,
+            left: "50%",
+            transform: "translateX(-50%)",
             height: "5rem",
+            backgroundColor: "#525257",
+            width: "100%",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
           }}
           elevation={3}
         >
-          <BottomNavigation>
+          <BottomNavigation
+            sx={{
+              backgroundColor: "transparent",
+              width: "100%",
+              display: "flex",
+              justifyContent: "space-around",
+              alignItems: "center",
+            }}
+          >
             <BottomNavigationAction
               label="Recents"
-              icon={<HomeIcon sx={{ fontSize: "2.5rem" }} />}
-              onClick={fetchWorkoutList}
-              sx={{ marginTop: "1rem" }}
+              icon={
+                <HomeIcon
+                  sx={{
+                    fontSize: "2.5rem",
+                    color: selectedTab === "home" ? "#4B51F4" : "#a1a1a1", // Change color when selected
+                  }}
+                />
+              }
+              onClick={() => handleTabChange("home")}
             />
+
             <IconButton
               onClick={() => {
                 setOpenModal(true);
@@ -192,7 +223,7 @@ function Homepage() {
               <AddCircleOutlineIcon
                 sx={{
                   fontSize: "4rem",
-                  marginTop: "1.5rem",
+                  color: "#a1a1a1",
                   ":hover": {
                     color: "red",
                   },
@@ -206,10 +237,16 @@ function Homepage() {
               />
             )}
             <BottomNavigationAction
-              label="Favorites"
-              icon={<FavoriteIcon sx={{ fontSize: "2rem" }} />}
-              onClick={fetchFavouriteWorkoutList}
-              sx={{ marginTop: "1rem" }}
+              label="Favourites"
+              icon={
+                <FavoriteIcon
+                  sx={{
+                    fontSize: "2.25rem",
+                    color: selectedTab === "favourites" ? "#FF6262" : "#a1a1a1", // Change color when selected
+                  }}
+                />
+              }
+              onClick={() => handleTabChange("favourites")}
             />
           </BottomNavigation>
         </Paper>

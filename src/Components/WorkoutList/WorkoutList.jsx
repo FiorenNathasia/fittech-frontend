@@ -8,11 +8,11 @@ function WorkoutList({ workouts, fetchWorkouts }) {
       <List
         sx={{
           width: "100%",
-          maxWidth: 360,
+          maxWidth: 400,
           position: "relative",
           overflow: "auto",
-          maxHeight: 550,
-          marginTop: 10,
+          maxHeight: 625,
+          marginTop: 2,
         }}
       >
         {workouts.map((workout) => (

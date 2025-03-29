@@ -9,6 +9,7 @@ import {
   Card,
   IconButton,
   Button,
+  Link,
   List,
   ListItem,
   ListItemText,
@@ -104,10 +105,16 @@ function WorkoutPage() {
           </Box>
         </Card>
         <Box sx={{ display: "flex", flexDirection: "row", margin: "1rem" }}>
-          <Typography>{workout?.title}</Typography>{" "}
-          <IconButton href={workout?.video_url}>
-            <OpenInNewIcon />
-          </IconButton>
+          <Link
+            href={workout?.video_url}
+            sx={{
+              textDecoration: "none",
+              color: "black",
+              ":hover": { color: "red" },
+            }}
+          >
+            {workout?.title}
+          </Link>
         </Box>
         <Box sx={{ margin: "0rem 2rem" }}>
           <Typography sx={{ fontWeight: "600", fontSize: "1.25rem" }}>
