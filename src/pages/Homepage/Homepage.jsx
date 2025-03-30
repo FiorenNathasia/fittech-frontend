@@ -13,6 +13,7 @@ import {
   Paper,
   Button,
   IconButton,
+  useTheme,
 } from "@mui/material";
 import HomeIcon from "@mui/icons-material/Home";
 import FavoriteIcon from "@mui/icons-material/Favorite";
@@ -29,6 +30,7 @@ function Homepage() {
   const [openModal, setOpenModal] = useState(false);
   const [selectedTab, setSelectedTab] = useState("home");
   const navigate = useNavigate();
+  const theme = useTheme();
 
   const fetchWorkoutList = async () => {
     const token = localStorage.getItem("accessToken");
@@ -112,42 +114,47 @@ function Homepage() {
       <Box
         sx={{
           display: "flex",
-          justifyContent: "center",
           alignItems: "center",
           flexDirection: "column",
-          width: "100vw",
-          height: "100vh",
-          backgroundColor: "#272728",
-          backgroundSize: "cover",
-          backgroundPosition: "left",
-          backgroundRepeat: "no-repeat",
+          width: "100%",
+          backgroundColor: theme.palette.background.default,
         }}
       >
+        {/* Sticky header */}
         <Box
           sx={{
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
             flexDirection: "column",
-            position: "absolute",
-            top: "2rem",
-            left: 0,
+            position: "fixed",
             width: "100%",
+            top: 0,
+            left: 0,
+            zIndex: 1000,
+            padding: "1rem 0",
+            backgroundColor: theme.palette.background.default,
           }}
         >
-          {" "}
           <IconButton
             onClick={logout}
             sx={{
               position: "absolute",
               right: "1rem",
-              color: "white",
+              color: theme.palette.secondary.main,
+              width: "3rem",
+              // padding: "0.5rem 0.75rem 0.5rem  1rem",
+              // backgroundColor: theme.palette.background.paper,
             }}
           >
             <LogoutIcon sx={{ fontSize: "1.5rem" }} />
           </IconButton>
           <Typography
-            sx={{ fontSize: "2rem", fontWeight: "700", color: "white" }}
+            sx={{
+              fontSize: "2rem",
+              fontWeight: "700",
+              color: theme.palette.primary.main,
+            }}
             variant="h2"
           >
             FIT
@@ -155,101 +162,114 @@ function Homepage() {
             TECH
           </Typography>
           <Typography
-            sx={{ fontSize: "1rem", fontWeight: "500", color: "white" }}
+            sx={{
+              fontSize: "1rem",
+              fontWeight: "500",
+              color: theme.palette.primary.main,
+            }}
             variant="h2"
           >
             Welcome back {user?.firstName}
           </Typography>
         </Box>
+        {/* Workout list */}
         <Box>
-          <Container
+          <WorkoutList
+            workouts={workoutsList}
+            fetchWorkouts={fetchWorkoutList}
+          />
+        </Box>
+        {/* Bottom nav */}
+        <Box
+          sx={{
+            bottom: 0,
+            position: "fixed",
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            backgroundColor: theme.palette.background.default,
+            paddingBottom: 2,
+            borderTopLeftRadius: "50px",
+            borderTopRightRadius: "50px",
+            width: "85%",
+          }}
+        >
+          <Paper
             sx={{
+              height: "5rem",
+              backgroundColor: theme.palette.background.default,
+              width: "100%",
+              borderRadius: "50px",
               display: "flex",
               justifyContent: "center",
               alignItems: "center",
-              height: "100vh",
-              flexDirection: "column",
+              borderStyle: "solid",
+              borderTop: "5px solid #4B51F4",
+              borderRight: "5px solid #FF6262",
+              borderBottom: "5px solid #FF6262",
+              borderLeft: "5px solid #4B51F4",
             }}
+            elevation={3}
           >
-            <WorkoutList
-              workouts={workoutsList}
-              fetchWorkouts={fetchWorkoutList}
-              fetchFavouriteWorkoutList={fetchFavouriteWorkoutList}
-            />
-          </Container>
-        </Box>
-        <Paper
-          sx={{
-            position: "fixed",
-            bottom: 0,
-            left: "50%",
-            transform: "translateX(-50%)",
-            height: "5rem",
-            backgroundColor: "#525257",
-            width: "100%",
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-          }}
-          elevation={3}
-        >
-          <BottomNavigation
-            sx={{
-              backgroundColor: "transparent",
-              width: "100%",
-              display: "flex",
-              justifyContent: "space-around",
-              alignItems: "center",
-            }}
-          >
-            <BottomNavigationAction
-              label="Recents"
-              icon={
-                <HomeIcon
-                  sx={{
-                    fontSize: "2.5rem",
-                    color: selectedTab === "home" ? "#4B51F4" : "#a1a1a1", // Change color when selected
-                  }}
-                />
-              }
-              onClick={() => handleTabChange("home")}
-            />
-
-            <IconButton
-              onClick={() => {
-                setOpenModal(true);
+            <BottomNavigation
+              sx={{
+                backgroundColor: "transparent",
+                width: "100%",
+                display: "flex",
+                justifyContent: "space-around",
+                alignItems: "center",
               }}
             >
-              <AddCircleOutlineIcon
-                sx={{
-                  fontSize: "4rem",
-                  color: "#a1a1a1",
-                  ":hover": {
-                    color: "red",
-                  },
+              <BottomNavigationAction
+                label="Recents"
+                icon={
+                  <HomeIcon
+                    sx={{
+                      fontSize: "2.5rem",
+                      color: selectedTab === "home" ? "#4B51F4" : "#a1a1a1", // Change color when selected
+                    }}
+                  />
+                }
+                onClick={() => handleTabChange("home")}
+              />
+
+              <IconButton
+                onClick={() => {
+                  setOpenModal(true);
                 }}
-              />
-            </IconButton>
-            {openModal && (
-              <ModalAdd
-                closeModal={() => setOpenModal(false)}
-                fetchWorkouts={fetchWorkoutList}
-              />
-            )}
-            <BottomNavigationAction
-              label="Favourites"
-              icon={
-                <FavoriteIcon
+              >
+                <AddCircleOutlineIcon
                   sx={{
-                    fontSize: "2.25rem",
-                    color: selectedTab === "favourites" ? "#FF6262" : "#a1a1a1", // Change color when selected
+                    fontSize: "4rem",
+                    color: "#a1a1a1",
+                    ":hover": {
+                      color: "red",
+                    },
                   }}
                 />
-              }
-              onClick={() => handleTabChange("favourites")}
-            />
-          </BottomNavigation>
-        </Paper>
+              </IconButton>
+              {openModal && (
+                <ModalAdd
+                  closeModal={() => setOpenModal(false)}
+                  fetchWorkouts={fetchWorkoutList}
+                />
+              )}
+              <BottomNavigationAction
+                label="Favourites"
+                icon={
+                  <FavoriteIcon
+                    sx={{
+                      fontSize: "2.25rem",
+                      color:
+                        selectedTab === "favourites" ? "#FF6262" : "#a1a1a1",
+                    }}
+                  />
+                }
+                onClick={() => handleTabChange("favourites")}
+              />
+            </BottomNavigation>
+          </Paper>
+        </Box>
       </Box>
     </>
   );

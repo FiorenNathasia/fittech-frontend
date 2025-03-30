@@ -11,6 +11,7 @@ import {
   CardContent,
   Typography,
   IconButton,
+  useTheme,
 } from "@mui/material";
 import FavoriteBorder from "@mui/icons-material/FavoriteBorder";
 import DeleteIcon from "@mui/icons-material/Delete";
@@ -19,6 +20,7 @@ import FavoriteIcon from "@mui/icons-material/Favorite";
 function Workout({ id, title, image, isFavourite, fetchWorkouts }) {
   const [isDeleting, setIsDeleting] = useState(false);
   const [favourite, setFavourite] = useState(isFavourite);
+  const theme = useTheme();
 
   const handleFavourite = async () => {
     const token = localStorage.getItem("accessToken");
@@ -60,23 +62,32 @@ function Workout({ id, title, image, isFavourite, fetchWorkouts }) {
           sx={{
             maxWidth: 345,
             maxHeigt: 50,
-            backgroundColor: "#525257",
-            borderRadius: "10px",
-            borderTop: "5px solid #4B51F4",
-            borderRight: "5px solid #FF6262",
-            borderBottom: "5px solid #FF6262",
-            borderLeft: "5px solid #4B51F4",
+            backgroundColor: theme.palette.background.paper,
+            borderRadius: "20px",
+            boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.1)",
+            // borderRadius: "10px",
+            // borderTop: "5px solid #4B51F4",
+            // borderRight: "5px solid #FF6262",
+            // borderBottom: "5px solid #FF6262",
+            // borderLeft: "5px solid #4B51F4",
           }}
         >
-          <CardActionArea>
-            <CardMedia component="img" image={image} alt={title} />
-            <CardContent
-              sx={{ paddingBottom: 0.5, backgroundColor: "#525257" }}
-            >
-              <Typography variant="h6" sx={{ fontSize: "0.85rem" }}>
+          <CardActionArea sx={{ padding: "1rem" }}>
+            <CardMedia
+              component="img"
+              image={image}
+              alt={title}
+              sx={{ borderRadius: "10px", boxShadow: 1 }}
+            />
+            <CardContent sx={{ paddingBottom: 0.5 }}>
+              <Typography variant="h6" sx={{ fontSize: "1.1rem" }}>
                 <Link
                   to={`/workouts/${id}`}
-                  style={{ textDecoration: "none", color: "#e5e5e7" }}
+                  style={{
+                    textDecoration: "none",
+                    color: theme.palette.primary.main,
+                    fontWeight: 500,
+                  }}
                 >
                   {title}
                 </Link>

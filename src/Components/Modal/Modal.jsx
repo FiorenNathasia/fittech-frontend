@@ -1,6 +1,6 @@
 import { useState } from "react";
-import "./Modal.scss";
 import axios from "axios";
+//Styling
 import { Box, TextField, Typography, Button, Modal } from "@mui/material";
 
 function ModalAdd({ closeModal, fetchWorkouts }) {
@@ -38,7 +38,7 @@ function ModalAdd({ closeModal, fetchWorkouts }) {
             left: "50%",
             transform: "translate(-50%, -50%)",
             width: 400,
-            bgcolor: "background.paper",
+            bgcolor: "white",
             boxShadow: 24,
             p: 4,
             borderRadius: 2,
@@ -47,7 +47,10 @@ function ModalAdd({ closeModal, fetchWorkouts }) {
             gap: 2,
           }}
         >
-          <Typography variant="h6" sx={{ fontWeight: "bold" }}>
+          <Typography
+            variant="h6"
+            sx={{ fontWeight: "bold", color: "#38383d" }}
+          >
             Add New Workout
           </Typography>
 
@@ -58,6 +61,7 @@ function ModalAdd({ closeModal, fetchWorkouts }) {
             value={url}
             onChange={(e) => setUrl(e.target.value)}
             disabled={isSaving}
+            sx={{ backgroundColor: "#a9a9ae" }}
           />
 
           {error && (
@@ -67,14 +71,53 @@ function ModalAdd({ closeModal, fetchWorkouts }) {
           )}
 
           <Box sx={{ display: "flex", justifyContent: "flex-end", gap: 1 }}>
-            <Button onClick={closeModal} disabled={isSaving} variant="outlined">
+            <Button
+              onClick={closeModal}
+              disabled={isSaving}
+              variant="outlined"
+              sx={{
+                borderStyle: "solid",
+                borderTop: "3px solid #4B51F4",
+                borderRight: "3px solid #FF6262",
+                borderBottom: "3px solid #FF6262",
+                borderLeft: "3px solid #4B51F4",
+                borderRadius: "25px",
+                width: "6rem",
+                height: "2.5rem",
+                background: "#EFEFEF",
+                ":hover": {
+                  bgcolor: "#282A33",
+                  opacity: 0.75,
+                  color: "white",
+                },
+                color: "black",
+                fontWeight: "bold",
+              }}
+            >
               Cancel
             </Button>
             <Button
               onClick={handleSubmit}
               disabled={isSaving}
-              variant="contained"
-              color="primary"
+              variant="outlined"
+              sx={{
+                borderStyle: "solid",
+                borderTop: "3px solid #4B51F4",
+                borderRight: "3px solid #FF6262",
+                borderBottom: "3px solid #FF6262",
+                borderLeft: "3px solid #4B51F4",
+                borderRadius: "25px",
+                width: "5rem",
+                height: "2.5rem",
+                background: "#EFEFEF",
+                ":hover": {
+                  bgcolor: "#282A33",
+                  opacity: 0.75,
+                  color: "white",
+                },
+                color: "black",
+                fontWeight: "bold",
+              }}
             >
               {isSaving ? "Saving..." : "Save"}
             </Button>
