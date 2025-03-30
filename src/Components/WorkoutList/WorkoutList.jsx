@@ -4,7 +4,7 @@ import { Box } from "@mui/material";
 
 function WorkoutList({ workouts, fetchWorkouts }) {
   return (
-    <Box sx={{ marginTop: "90px", marginBottom: "110px" }}>
+    <Box sx={{ marginTop: "100px", marginBottom: "110px" }}>
       {workouts.map((workout) => (
         <Workout
           key={workout.id}

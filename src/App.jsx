@@ -2,10 +2,13 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Login from "./pages/Login/Login";
 import Signup from "./pages/Signup/Signup";
 import Homepage from "./pages/Homepage/Homepage";
-import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute"; // Import the ProtectedRoute component
+import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
 import WorkoutPage from "./pages/WorkoutPage/WorkoutPage";
 import Welcome from "./pages/Welcome/Welcome";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
+import "@fontsource/bebas-neue";
+import "@fontsource/montserrat";
+import "@fontsource/bebas-neue";
 
 function App() {
   const theme = createTheme({
@@ -15,7 +18,7 @@ function App() {
         contrastText: "#FFFFFF",
       },
       secondary: {
-        main: "#F44336",
+        main: "#FF6262",
         contrastText: "#FFFFFF",
       },
       background: {
@@ -25,6 +28,27 @@ function App() {
       text: {
         primary: "#1C1C1E",
         secondary: "#4A4A4A",
+      },
+    },
+    typography: {
+      fontFamily: `"MyCustomFont", "Arial", sans-serif`,
+      h1: {
+        fontFamily: `"Bebas Neue", sans-serif`,
+        fontSize: "3rem",
+        fontWeight: 400,
+        letterSpacing: "2px",
+      },
+      h2: {
+        fontFamily: `"Bebas Neue", sans-serif`,
+        fontSize: "2.5rem",
+        fontWeight: 400,
+        letterSpacing: "1.5px",
+      },
+      h3: {
+        fontFamily: `"MyCustomFont", sans-serif`,
+        fontSize: "2rem",
+        fontWeight: 500,
+        letterSpacing: -1,
       },
     },
   });

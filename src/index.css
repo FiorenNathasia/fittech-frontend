@@ -10,3 +10,9 @@ p,
 body {
   margin: 0;
 }
+@font-face {
+  font-family: "MyCustomFont";
+  src: url("./assets/fonts/MyCustomFont.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}

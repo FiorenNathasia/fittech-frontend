@@ -11,6 +11,7 @@ import {
   Stack,
   IconButton,
   Link,
+  useTheme,
 } from "@mui/material";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import pill from "../../assets/pill.png";
@@ -22,6 +23,7 @@ function Login() {
   const [password, setPassword] = useState("");
   const [error, setError] = useState(null);
   const navigate = useNavigate();
+  const theme = useTheme();
 
   const handleSubmit = async () => {
     const user = {
@@ -77,10 +79,7 @@ function Login() {
             width: "100%",
           }}
         >
-          <Typography
-            sx={{ fontSize: "1.25rem", fontWeight: "700", color: "white" }}
-            variant="h2"
-          >
+          <Typography variant="h2" sx={{ color: "white" }}>
             FIT
             <img src={pill} alt="pill" width="10rem" />
             TECH
@@ -128,10 +127,11 @@ function Login() {
               <ArrowBackIcon />
             </IconButton>
             <Typography
+              variant="h2"
               sx={{
                 position: "relative",
                 display: "inline-block",
-                fontSize: "1.5rem",
+                fontSize: "2rem",
                 paddingBottom: "5px",
                 fontWeight: "600",
               }}
@@ -170,7 +170,10 @@ function Login() {
                 variant="filled"
                 InputLabelProps={{
                   sx: {
-                    color: "white", // Change label color (example: red)
+                    color: "white",
+                    fontFamily: `"MyCustomFont", sans-serif`,
+                    fontWeight: "300",
+                    letterSpacing: -1,
                   },
                 }}
                 InputProps={{
@@ -192,6 +195,9 @@ function Login() {
                 InputLabelProps={{
                   sx: {
                     color: "white",
+                    fontFamily: `"MyCustomFont", sans-serif`,
+                    fontWeight: "300",
+                    letterSpacing: -1,
                   },
                 }}
                 InputProps={{
@@ -206,7 +212,7 @@ function Login() {
               />
               {error && (
                 <Typography
-                  variant="body1"
+                  variant="h3"
                   sx={{ fontSize: "0.75rem", color: "red" }}
                 >
                   {error}
@@ -241,13 +247,15 @@ function Login() {
                   },
                   color: "black",
                   fontWeight: "bold",
+                  fontFamily: `"Bebas Neue", sans-serif`,
+                  fontSize: "1.25rem",
                 }}
               >
                 LOGIN
               </Button>
-              <Typography>
+              <Typography variant="h3" sx={{ fontSize: "1rem" }}>
                 Not a member yet?{" "}
-                <Link href="/signup" component="a">
+                <Link href="/signup" component="a" sx={{ color: "#4B51F4" }}>
                   Signup Here
                 </Link>
               </Typography>

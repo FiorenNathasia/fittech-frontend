@@ -11,7 +11,6 @@ import {
   BottomNavigation,
   BottomNavigationAction,
   Paper,
-  Button,
   IconButton,
   useTheme,
 } from "@mui/material";
@@ -143,19 +142,18 @@ function Homepage() {
               right: "1rem",
               color: theme.palette.secondary.main,
               width: "3rem",
-              // padding: "0.5rem 0.75rem 0.5rem  1rem",
-              // backgroundColor: theme.palette.background.paper,
             }}
           >
             <LogoutIcon sx={{ fontSize: "1.5rem" }} />
           </IconButton>
           <Typography
+            variant="h2"
             sx={{
               fontSize: "2rem",
               fontWeight: "700",
               color: theme.palette.primary.main,
+              marginTop: "1rem",
             }}
-            variant="h2"
           >
             FIT
             <img src={pill} alt="pill" width="10rem" />
@@ -191,7 +189,7 @@ function Homepage() {
             paddingBottom: 2,
             borderTopLeftRadius: "50px",
             borderTopRightRadius: "50px",
-            width: "85%",
+            width: "90%",
           }}
         >
           <Paper
@@ -243,7 +241,7 @@ function Homepage() {
                     fontSize: "4rem",
                     color: "#a1a1a1",
                     ":hover": {
-                      color: "red",
+                      color: theme.palette.secondary.main,
                     },
                   }}
                 />

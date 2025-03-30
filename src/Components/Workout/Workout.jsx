@@ -58,65 +58,65 @@ function Workout({ id, title, image, isFavourite, fetchWorkouts }) {
   return (
     <>
       <ListItem>
-        <Card
-          sx={{
-            maxWidth: 345,
-            maxHeigt: 50,
-            backgroundColor: theme.palette.background.paper,
-            borderRadius: "20px",
-            boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.1)",
-            // borderRadius: "10px",
-            // borderTop: "5px solid #4B51F4",
-            // borderRight: "5px solid #FF6262",
-            // borderBottom: "5px solid #FF6262",
-            // borderLeft: "5px solid #4B51F4",
-          }}
-        >
-          <CardActionArea sx={{ padding: "1rem" }}>
-            <CardMedia
-              component="img"
-              image={image}
-              alt={title}
-              sx={{ borderRadius: "10px", boxShadow: 1 }}
-            />
-            <CardContent sx={{ paddingBottom: 0.5 }}>
-              <Typography variant="h6" sx={{ fontSize: "1.1rem" }}>
-                <Link
-                  to={`/workouts/${id}`}
-                  style={{
-                    textDecoration: "none",
-                    color: theme.palette.primary.main,
-                    fontWeight: 500,
-                  }}
+        <Link to={`/workouts/${id}`} style={{ textDecoration: "none" }}>
+          <Card
+            sx={{
+              maxWidth: 345,
+              maxHeigt: 50,
+              backgroundColor: theme.palette.background.paper,
+              borderRadius: "20px",
+              boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.1)",
+            }}
+          >
+            <CardActionArea sx={{ padding: "1rem" }}>
+              <CardMedia
+                component="img"
+                image={image}
+                alt={title}
+                sx={{ borderRadius: "10px" }}
+              />
+              <CardContent sx={{ paddingBottom: 0.5 }}>
+                <Typography
+                  variant="h3"
+                  sx={{ fontSize: "1rem", color: theme.palette.primary.main }}
                 >
                   {title}
-                </Link>
-              </Typography>
-            </CardContent>
-            <IconButton
-              onClick={handleFavourite}
-              variant="outlined"
-              color="neutral"
-              sx={{ marginLeft: 1 }}
-            >
-              {favourite ? (
-                <FavoriteIcon color="error" sx={{ fontSize: "1.2rem" }} />
-              ) : (
-                <FavoriteIcon sx={{ fontSize: "1.2rem", color: "#919192" }} />
-              )}
-            </IconButton>
-            <IconButton variant="contained" color="neutral" sx={{ mr: "auto" }}>
-              <DeleteIcon
-                variant="contained"
-                onClick={handleDelete}
-                disabled={isDeleting}
-                sx={{ fontSize: "1.2rem", color: "#919192" }}
+                </Typography>
+              </CardContent>
+              <IconButton
+                onClick={handleFavourite}
+                variant="outlined"
+                color="neutral"
+                sx={{ marginLeft: 1 }}
               >
-                {isDeleting ? "Deleting..." : "Delete"}
-              </DeleteIcon>
-            </IconButton>
-          </CardActionArea>
-        </Card>
+                {favourite ? (
+                  <FavoriteIcon
+                    sx={{
+                      fontSize: "1.5rem",
+                      color: theme.palette.secondary.main,
+                    }}
+                  />
+                ) : (
+                  <FavoriteIcon sx={{ fontSize: "1.2rem", color: "#919192" }} />
+                )}
+              </IconButton>
+              <IconButton
+                variant="contained"
+                color="neutral"
+                sx={{ mr: "auto" }}
+              >
+                <DeleteIcon
+                  variant="contained"
+                  onClick={handleDelete}
+                  disabled={isDeleting}
+                  sx={{ fontSize: "1.5rem", color: "#919192" }}
+                >
+                  {isDeleting ? "Deleting..." : "Delete"}
+                </DeleteIcon>
+              </IconButton>
+            </CardActionArea>
+          </Card>
+        </Link>
       </ListItem>
     </>
   );

@@ -137,6 +137,7 @@ function WorkoutPage() {
                 sx={{
                   textDecoration: "none",
                   color: "black",
+                  fontFamily: `"MyCustomFont", sans-serif`,
                   ":hover": { color: "red" },
                 }}
               >

@@ -1,12 +1,20 @@
 import { useState } from "react";
 import axios from "axios";
 //Styling
-import { Box, TextField, Typography, Button, Modal } from "@mui/material";
+import {
+  Box,
+  TextField,
+  Typography,
+  Button,
+  Modal,
+  useTheme,
+} from "@mui/material";
 
 function ModalAdd({ closeModal, fetchWorkouts }) {
   const [url, setUrl] = useState("");
   const [isSaving, setIsSaving] = useState(false);
   const [error, setError] = useState(null);
+  const theme = useTheme();
 
   const handleSubmit = async () => {
     setIsSaving(true);
@@ -48,8 +56,13 @@ function ModalAdd({ closeModal, fetchWorkouts }) {
           }}
         >
           <Typography
-            variant="h6"
-            sx={{ fontWeight: "bold", color: "#38383d" }}
+            sx={{
+              color: theme.palette.primary.main,
+              fontFamily: `"MyCustomFont", sans-serif`,
+              fontWeight: "600",
+              fontSize: "1.25rem",
+              letterSpacing: -1,
+            }}
           >
             Add New Workout
           </Typography>
@@ -58,10 +71,19 @@ function ModalAdd({ closeModal, fetchWorkouts }) {
             fullWidth
             label="Workout URL"
             type="url"
+            variant="filled"
             value={url}
             onChange={(e) => setUrl(e.target.value)}
             disabled={isSaving}
-            sx={{ backgroundColor: "#a9a9ae" }}
+            sx={{ backgroundColor: theme.palette.background.default }}
+            InputLabelProps={{
+              sx: {
+                fontFamily: `"MyCustomFont", sans-serif`,
+                fontWeight: "300",
+                letterSpacing: -1,
+                color: theme.palette.text.secondary,
+              },
+            }}
           />
 
           {error && (
@@ -74,24 +96,19 @@ function ModalAdd({ closeModal, fetchWorkouts }) {
             <Button
               onClick={closeModal}
               disabled={isSaving}
-              variant="outlined"
+              variant="filled"
               sx={{
-                borderStyle: "solid",
-                borderTop: "3px solid #4B51F4",
-                borderRight: "3px solid #FF6262",
-                borderBottom: "3px solid #FF6262",
-                borderLeft: "3px solid #4B51F4",
                 borderRadius: "25px",
                 width: "6rem",
                 height: "2.5rem",
-                background: "#EFEFEF",
+                background: theme.palette.secondary.main,
+                color: theme.palette.secondary.contrastText,
+                fontWeight: "500",
+                fontFamily: `"MyCustomFont", sans-serif`,
                 ":hover": {
                   bgcolor: "#282A33",
                   opacity: 0.75,
-                  color: "white",
                 },
-                color: "black",
-                fontWeight: "bold",
               }}
             >
               Cancel
@@ -99,24 +116,19 @@ function ModalAdd({ closeModal, fetchWorkouts }) {
             <Button
               onClick={handleSubmit}
               disabled={isSaving}
-              variant="outlined"
+              variant="filled"
               sx={{
-                borderStyle: "solid",
-                borderTop: "3px solid #4B51F4",
-                borderRight: "3px solid #FF6262",
-                borderBottom: "3px solid #FF6262",
-                borderLeft: "3px solid #4B51F4",
                 borderRadius: "25px",
                 width: "5rem",
                 height: "2.5rem",
-                background: "#EFEFEF",
+                background: "#4B51F4",
+                color: theme.palette.primary.contrastText,
+                fontWeight: "500",
+                fontFamily: `"MyCustomFont", sans-serif`,
                 ":hover": {
                   bgcolor: "#282A33",
                   opacity: 0.75,
-                  color: "white",
                 },
-                color: "black",
-                fontWeight: "bold",
               }}
             >
               {isSaving ? "Saving..." : "Save"}

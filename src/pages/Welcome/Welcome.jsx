@@ -68,15 +68,15 @@ function Welcome() {
           >
             <Typography
               sx={{ fontSize: "3.5rem", fontWeight: "700", color: "white" }}
-              variant="h2"
+              variant="h1"
             >
               FIT
               <img src={pill} alt="pill" width="23rem" />
               TECH
             </Typography>
             <Typography
-              sx={{ fontSize: "0.6rem", color: "white" }}
-              variant="h4"
+              sx={{ fontSize: "0.8rem", color: "white" }}
+              variant="h3"
               gutterBottom
             >
               An all in one smart playlist for your favourite workouts
@@ -120,6 +120,8 @@ function Welcome() {
                 },
                 fontWeight: "bold",
                 color: "black",
+                fontFamily: `"Bebas Neue", sans-serif`,
+                fontSize: "1.25rem",
               }}
             >
               LOGIN
@@ -146,6 +148,8 @@ function Welcome() {
                 },
                 color: "black",
                 fontWeight: "bold",
+                fontFamily: `"Bebas Neue", sans-serif`,
+                fontSize: "1.25rem",
               }}
             >
               SIGNUP

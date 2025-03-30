@@ -83,10 +83,7 @@ function Signup() {
             width: "100%",
           }}
         >
-          <Typography
-            sx={{ fontSize: "1.25rem", fontWeight: "700", color: "white" }}
-            variant="h2"
-          >
+          <Typography variant="h2" sx={{ color: "white" }}>
             FIT
             <img src={pill} alt="pill" width="10rem" />
             TECH
@@ -134,10 +131,11 @@ function Signup() {
               <ArrowBackIcon />
             </IconButton>
             <Typography
+              variant="h2"
               sx={{
                 position: "relative",
                 display: "inline-block",
-                fontSize: "1.5rem",
+                fontSize: "2rem",
                 paddingBottom: "5px",
                 fontWeight: "600",
               }}
@@ -177,6 +175,8 @@ function Signup() {
                 InputLabelProps={{
                   sx: {
                     color: "white",
+                    fontFamily: `"MyCustomFont", sans-serif`,
+                    fontWeight: "300",
                   },
                 }}
                 InputProps={{
@@ -198,6 +198,9 @@ function Signup() {
                 InputLabelProps={{
                   sx: {
                     color: "white",
+                    fontFamily: `"MyCustomFont", sans-serif`,
+                    fontWeight: "300",
+                    letterSpacing: -1,
                   },
                 }}
                 InputProps={{
@@ -219,6 +222,9 @@ function Signup() {
                 InputLabelProps={{
                   sx: {
                     color: "white",
+                    fontFamily: `"MyCustomFont", sans-serif`,
+                    fontWeight: "300",
+                    letterSpacing: -1,
                   },
                 }}
                 InputProps={{
@@ -228,6 +234,7 @@ function Signup() {
                     opacity: 0.5,
                     width: "15rem",
                     height: "3rem",
+                    letterSpacing: -1,
                   },
                 }}
               />
@@ -240,6 +247,9 @@ function Signup() {
                 InputLabelProps={{
                   sx: {
                     color: "white",
+                    fontFamily: `"MyCustomFont", sans-serif`,
+                    fontWeight: "300",
+                    letterSpacing: -1,
                   },
                 }}
                 InputProps={{
@@ -288,14 +298,16 @@ function Signup() {
                     color: "white",
                   },
                   color: "black",
-                  fontWeight: "bold",
+                  fontWeight: "600",
+                  fontFamily: `"Bebas Neue", sans-serif`,
+                  fontSize: "1.25rem",
                 }}
               >
                 SIGNUP
               </Button>
-              <Typography>
+              <Typography variant="h3" sx={{ fontSize: "1rem" }}>
                 Already a member?{" "}
-                <Link href="/login" component="a">
+                <Link href="/login" component="a" sx={{ color: "#4B51F4" }}>
                   Login Here
                 </Link>
               </Typography>
