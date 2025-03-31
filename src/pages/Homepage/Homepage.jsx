@@ -127,7 +127,7 @@ function Homepage() {
         {/* Sticky header */}
         <Box
           sx={{
-            display: "flex",
+            display: { xs: "flex", sm: "none" },
             justifyContent: "center",
             alignItems: "center",
             flexDirection: "column",
@@ -176,23 +176,80 @@ function Homepage() {
           </Typography>
         </Box>
         {/* Workout list */}
-        <Box>
+        <Box
+          sx={{
+            position: "relative",
+            marginLeft: { xs: 0, sm: 20 },
+            padding: 2,
+            display: "flex",
+            flexDirection: "column",
+            minHeight: "100vh",
+            justifyContent: "flex-start",
+          }}
+        >
           <WorkoutList
             workouts={workoutsList}
             fetchWorkouts={fetchWorkoutList}
           />
         </Box>
+        <Box
+          sx={{
+            position: "fixed",
+            bottom: "2rem",
+            right: "2rem",
+            overflow: "hidden",
+            display: { xs: "none", sm: "block" },
+          }}
+        >
+          <IconButton
+            onClick={() => setOpenModal(true)}
+            sx={{
+              backgroundColor: theme.palette.primary.main,
+              color: "#fff",
+              "&:hover": {
+                backgroundColor: theme.palette.secondary.main,
+              },
+              width: "4rem",
+              height: "4rem",
+              boxShadow: 3,
+            }}
+          >
+            <AddCircleOutlineIcon sx={{ fontSize: "3rem" }} />
+          </IconButton>
+        </Box>
+
         {/* Sidebar for Desktop only */}
         <Drawer
           sx={{
-            "@media (max-width:600px)": {
-              display: "none", // Hide the sidebar on mobile
-            },
+            display: { xs: "none", sm: "flex" },
           }}
           variant="permanent"
         >
           <List>
-            <ListItem button onClick={() => handleTabChange("home")}>
+            <Typography
+              variant="h2"
+              sx={{
+                fontSize: "2rem",
+                fontWeight: "700",
+                color: theme.palette.primary.main,
+                marginTop: "1rem",
+              }}
+            >
+              FIT
+              <img src={pill} alt="pill" width="10rem" />
+              TECH
+            </Typography>
+            <Typography
+              sx={{
+                fontSize: "1rem",
+                fontWeight: "500",
+                color: theme.palette.primary.main,
+              }}
+              variant="h2"
+            >
+              Welcome back {user?.firstName}
+            </Typography>
+            <ListItem onClick={() => handleTabChange("home")}>
               <ListItemIcon>
                 <HomeIcon
                   sx={{
@@ -203,23 +260,7 @@ function Homepage() {
               </ListItemIcon>
               <Typography>Home</Typography>
             </ListItem>
-
-            <ListItem button onClick={() => setOpenModal(true)}>
-              <ListItemIcon>
-                <AddCircleOutlineIcon
-                  sx={{
-                    fontSize: "2.5rem",
-                    color: "#a1a1a1",
-                    ":hover": {
-                      color: theme.palette.secondary.main,
-                    },
-                  }}
-                />
-              </ListItemIcon>
-              <Typography>Add</Typography>
-            </ListItem>
-
-            <ListItem button onClick={() => handleTabChange("favourites")}>
+            <ListItem onClick={() => handleTabChange("favourites")}>
               <ListItemIcon>
                 <FavoriteIcon
                   sx={{
@@ -230,14 +271,23 @@ function Homepage() {
               </ListItemIcon>
               <Typography>Favourites</Typography>
             </ListItem>
+            <ListItem onClick={logout}>
+              <ListItemIcon
+                sx={{ "&:hover": { color: theme.palette.secondary.main } }}
+              >
+                <LogoutIcon sx={{ fontSize: "1.5rem" }} />
+              </ListItemIcon>
+              <Typography>Logout</Typography>
+            </ListItem>
           </List>
         </Drawer>
+
         {/* Bottom nav */}
         <Box
           sx={{
             bottom: 0,
             position: "fixed",
-            display: "flex",
+            display: { xs: "flex", sm: "none" },
             flexDirection: "column",
             alignItems: "center",
             backgroundColor: theme.palette.background.default,
@@ -245,9 +295,6 @@ function Homepage() {
             borderTopLeftRadius: "50px",
             borderTopRightRadius: "50px",
             width: "90%",
-            "@media (min-width:600px)": {
-              display: "none",
-            },
           }}
         >
           <Paper

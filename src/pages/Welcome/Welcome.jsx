@@ -85,7 +85,7 @@ function Welcome() {
           <Stack
             sx={{
               display: "flex",
-              flexDirection: "column",
+              flexDirection: { xs: "column", sm: "row" },
               position: "fixed",
               bottom: "150px",
               left: "50%",
@@ -93,9 +93,6 @@ function Welcome() {
               width: "auto",
               alignItems: "center",
               gap: "1rem",
-              "@media (min-width:600px)": {
-                flexDirection: "row",
-              },
             }}
           >
             <Button

@@ -55,16 +55,14 @@ function Login() {
           alignItems: "center",
           width: "100vw",
           height: "100vh",
-          backgroundImage: `url(${mobile})`,
-          backgroundSize: "160%",
-          backgroundPosition: "center top -5px",
+          backgroundImage: {
+            xs: `url(${mobile})`,
+            sm: `url(${desktopbg})`,
+          },
+          backgroundSize: { xs: "150%", sm: "cover" },
+          backgroundPosition: { xs: "center top  -5px", sm: "center" },
           backgroundRepeat: "no-repeat",
           flexDirection: "column",
-          "@media (min-width:600px)": {
-            backgroundSize: "cover",
-            backgroundPosition: "center",
-            backgroundImage: `url(${desktopbg})`,
-          },
         }}
       >
         <Box
