@@ -13,6 +13,11 @@ import {
   Paper,
   IconButton,
   useTheme,
+  Drawer,
+  List,
+  ListItem,
+  ListItemButton,
+  ListItemIcon,
 } from "@mui/material";
 import HomeIcon from "@mui/icons-material/Home";
 import FavoriteIcon from "@mui/icons-material/Favorite";
@@ -177,6 +182,56 @@ function Homepage() {
             fetchWorkouts={fetchWorkoutList}
           />
         </Box>
+        {/* Sidebar for Desktop only */}
+        <Drawer
+          sx={{
+            "@media (max-width:600px)": {
+              display: "none", // Hide the sidebar on mobile
+            },
+          }}
+          variant="permanent"
+        >
+          <List>
+            <ListItem button onClick={() => handleTabChange("home")}>
+              <ListItemIcon>
+                <HomeIcon
+                  sx={{
+                    fontSize: "2.5rem",
+                    color: selectedTab === "home" ? "#4B51F4" : "#a1a1a1",
+                  }}
+                />
+              </ListItemIcon>
+              <Typography>Home</Typography>
+            </ListItem>
+
+            <ListItem button onClick={() => setOpenModal(true)}>
+              <ListItemIcon>
+                <AddCircleOutlineIcon
+                  sx={{
+                    fontSize: "2.5rem",
+                    color: "#a1a1a1",
+                    ":hover": {
+                      color: theme.palette.secondary.main,
+                    },
+                  }}
+                />
+              </ListItemIcon>
+              <Typography>Add</Typography>
+            </ListItem>
+
+            <ListItem button onClick={() => handleTabChange("favourites")}>
+              <ListItemIcon>
+                <FavoriteIcon
+                  sx={{
+                    fontSize: "2.25rem",
+                    color: selectedTab === "favourites" ? "#FF6262" : "#a1a1a1",
+                  }}
+                />
+              </ListItemIcon>
+              <Typography>Favourites</Typography>
+            </ListItem>
+          </List>
+        </Drawer>
         {/* Bottom nav */}
         <Box
           sx={{
@@ -190,6 +245,9 @@ function Homepage() {
             borderTopLeftRadius: "50px",
             borderTopRightRadius: "50px",
             width: "90%",
+            "@media (min-width:600px)": {
+              display: "none",
+            },
           }}
         >
           <Paper
