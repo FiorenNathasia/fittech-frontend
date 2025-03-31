@@ -57,11 +57,12 @@ function Workout({ id, title, image, isFavourite, fetchWorkouts }) {
 
   return (
     <>
-      <ListItem>
+      <ListItem sx={{ paddingRight: 0 }}>
         <Link to={`/workouts/${id}`} style={{ textDecoration: "none" }}>
           <Card
             sx={{
-              maxWidth: 345,
+              minWidth: 330,
+              maxWidth: 330,
               maxHeigt: 50,
               backgroundColor: theme.palette.background.paper,
               borderRadius: "20px",

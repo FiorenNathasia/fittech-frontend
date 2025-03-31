@@ -1,18 +1,23 @@
 import Workout from "../Workout/Workout";
 //Styling
-import { Box, Grid } from "@mui/material";
+import { Box, Grid2 } from "@mui/material";
 
 function WorkoutList({ workouts, fetchWorkouts }) {
   return (
     <Box
       sx={{
+        width: "100%",
         marginTop: { xs: "100px", sm: "30px" },
         marginBottom: { xs: "110px", sm: "0px" },
       }}
     >
-      <Grid container spacing={1}>
+      <Grid2
+        spacing={1}
+        container={{ sm: "container" }}
+        sx={{ justifyContent: "center" }}
+      >
         {workouts.map((workout) => (
-          <Grid item xs={12} sm={6} md={4} lg={3} key={workout.id}>
+          <Grid2 item xs={12} sm={6} lg={3} key={workout.id}>
             <Workout
               id={workout.id}
               title={workout.title}
@@ -22,9 +27,9 @@ function WorkoutList({ workouts, fetchWorkouts }) {
               isFavourite={workout.is_favourite}
               fetchWorkouts={fetchWorkouts}
             />
-          </Grid>
+          </Grid2>
         ))}
-      </Grid>
+      </Grid2>
     </Box>
   );
 }

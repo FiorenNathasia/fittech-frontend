@@ -6,7 +6,6 @@ import WorkoutList from "../../components/WorkoutList/WorkoutList";
 //Styling
 import {
   Box,
-  Container,
   Typography,
   BottomNavigation,
   BottomNavigationAction,
@@ -16,7 +15,6 @@ import {
   Drawer,
   List,
   ListItem,
-  ListItemButton,
   ListItemIcon,
 } from "@mui/material";
 import HomeIcon from "@mui/icons-material/Home";
@@ -179,12 +177,12 @@ function Homepage() {
         <Box
           sx={{
             position: "relative",
-            marginLeft: { xs: 0, sm: 20 },
+            marginLeft: { xs: 0, sm: 25 },
             padding: 2,
             display: "flex",
             flexDirection: "column",
             minHeight: "100vh",
-            justifyContent: "flex-start",
+            justifyContent: "center",
           }}
         >
           <WorkoutList
@@ -197,7 +195,6 @@ function Homepage() {
             position: "fixed",
             bottom: "2rem",
             right: "2rem",
-            overflow: "hidden",
             display: { xs: "none", sm: "block" },
           }}
         >
@@ -222,6 +219,10 @@ function Homepage() {
         <Drawer
           sx={{
             display: { xs: "none", sm: "flex" },
+
+            "& .MuiDrawer-paper": {
+              width: 200, // Ensures the inner paper expands as well
+            },
           }}
           variant="permanent"
         >
@@ -233,6 +234,7 @@ function Homepage() {
                 fontWeight: "700",
                 color: theme.palette.primary.main,
                 marginTop: "1rem",
+                marginLeft: "1.25rem",
               }}
             >
               FIT
@@ -244,6 +246,7 @@ function Homepage() {
                 fontSize: "1rem",
                 fontWeight: "500",
                 color: theme.palette.primary.main,
+                marginLeft: "1.25rem",
               }}
               variant="h2"
             >
@@ -273,7 +276,12 @@ function Homepage() {
             </ListItem>
             <ListItem onClick={logout}>
               <ListItemIcon
-                sx={{ "&:hover": { color: theme.palette.secondary.main } }}
+                sx={{
+                  marginLeft: "0.5rem",
+                  "&:hover": {
+                    color: theme.palette.secondary.main,
+                  },
+                }}
               >
                 <LogoutIcon sx={{ fontSize: "1.5rem" }} />
               </ListItemIcon>

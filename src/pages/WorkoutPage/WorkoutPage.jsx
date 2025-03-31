@@ -63,17 +63,15 @@ function WorkoutPage() {
 
   return (
     <>
-      <Box>
+      <Box sx={{ backgroundColor: "#F5F5F5", height: "100vw" }}>
         <Box
           sx={{
             display: "flex",
             flexDirection: "row",
             justifyContent: "center",
             alignItems: "center",
-            position: "absolute",
-            top: 45,
-            left: 0,
             width: "100%",
+            backgroundColor: "#F5F5F5",
           }}
         >
           <IconButton
@@ -97,25 +95,24 @@ function WorkoutPage() {
         <Box
           sx={{
             display: "flex",
-            flexDirection: "column",
-            "@media (min-width:600px)": {
-              display: "flex",
-              flexDirection: "row",
-              alignItems: "center",
-              justifyContent: "center",
-              marginTop: "5rem",
-            },
+            flexDirection: { xs: "column", sm: "row" },
+            alignItems: "center",
+            justifyContent: "center",
+            marginTop: { xs: "0", sm: "5rem" },
           }}
         >
-          <Box>
+          <Box
+            sx={{
+              backgroundColor: "white",
+              height: { sm: "30rem" },
+              padding: { xs: "none", sm: "1rem" },
+            }}
+          >
             <Card
               sx={{
-                maxWidth: "100%",
+                maxWidth: { xs: "100%", sm: "30rem" },
                 margin: "0.5rem",
-                marginTop: "7rem",
-                "@media (min-width:600px)": {
-                  width: "30rem",
-                },
+                marginTop: { xs: "1rem", sm: "0" },
               }}
             >
               <Box sx={{ position: "relative", paddingTop: "56.25%" }}>
@@ -132,7 +129,12 @@ function WorkoutPage() {
                 />
               </Box>
             </Card>
-            <Box sx={{ display: "flex", flexDirection: "row", margin: "1rem" }}>
+            <Box
+              sx={{
+                flexDirection: "row",
+                margin: { xs: "1rem", sm: "rem" },
+              }}
+            >
               <Link
                 href={workout?.video_url}
                 sx={{
