@@ -43,7 +43,7 @@ function Login() {
     }
   };
   const welcome = () => {
-    navigate("/");
+    navigate("/welcome");
   };
 
   return (

@@ -9,6 +9,7 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import "@fontsource/bebas-neue";
 import "@fontsource/montserrat";
 import "@fontsource/bebas-neue";
+import NormalList from "./pages/NormalList/NormalList";
 
 function App() {
   const theme = createTheme({
@@ -58,7 +59,7 @@ function App() {
       <ThemeProvider theme={theme}>
         <BrowserRouter>
           <Routes>
-            <Route path="/" element={<Welcome />} />
+            <Route path="/welcome" element={<Welcome />} />
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<Signup />} />
             <Route
@@ -66,6 +67,14 @@ function App() {
               element={
                 <ProtectedRoute>
                   <Homepage />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/"
+              element={
+                <ProtectedRoute>
+                  <NormalList />
                 </ProtectedRoute>
               }
             />

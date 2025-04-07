@@ -8,7 +8,6 @@ import {
   Typography,
   Card,
   IconButton,
-  Button,
   Link,
   List,
   ListItem,
@@ -19,6 +18,7 @@ import {
 import OpenInNewIcon from "@mui/icons-material/OpenInNew";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import pill from "../../assets/pill.png";
+import Sidebar from "../../components/Sidebar/Sidebar";
 
 function WorkoutPage() {
   const [workout, setWorkout] = useState(null);
@@ -66,12 +66,12 @@ function WorkoutPage() {
       <Box sx={{ backgroundColor: "#F5F5F5", height: "100vw" }}>
         <Box
           sx={{
-            display: "flex",
-            flexDirection: "row",
-            justifyContent: "center",
-            alignItems: "center",
-            width: "100%",
-            backgroundColor: "#F5F5F5",
+            display: { xs: "flex", sm: "none" },
+            flexDirection: { xs: "row", sm: "none" },
+            justifyContent: { xs: "center", sm: "none" },
+            alignItems: { xs: "center", sm: "none" },
+            width: { xs: "100%", sm: "none" },
+            backgroundColor: { xs: "#F5F5F5", sm: "none" },
           }}
         >
           <IconButton
@@ -92,20 +92,22 @@ function WorkoutPage() {
           </Typography>
         </Box>
         {error && <Typography style={{ color: "black" }}>{error}</Typography>}
+        <Sidebar />
         <Box
           sx={{
             display: "flex",
-            flexDirection: { xs: "column", sm: "row" },
+            flexDirection: "column",
             alignItems: "center",
             justifyContent: "center",
-            marginTop: { xs: "0", sm: "5rem" },
           }}
         >
           <Box
             sx={{
               backgroundColor: "white",
-              height: { sm: "30rem" },
+              height: { sm: "100%" },
               padding: { xs: "none", sm: "1rem" },
+              borderRadius: { sm: "10px" },
+              boxShadow: { sm: "0px 4px 10px rgba(0, 0, 0, 0.1)" },
             }}
           >
             <Card
@@ -132,7 +134,9 @@ function WorkoutPage() {
             <Box
               sx={{
                 flexDirection: "row",
-                margin: { xs: "1rem", sm: "rem" },
+                maxWidth: { xs: "100%", sm: "30rem" },
+                margin: { xs: "1rem", sm: "0rem" },
+                padding: { xs: "0rem", sm: "1rem" },
               }}
             >
               <Link
@@ -148,13 +152,22 @@ function WorkoutPage() {
               </Link>
             </Box>
           </Box>
-          <Box>
+          <Box
+            sx={{
+              backgroundColor: "white",
+              margin: { sm: "1rem" },
+              maxWidth: { xs: "100%", sm: "30rem" },
+              minWidth: { sm: "30rem" },
+              height: { sm: "100%" },
+              padding: { sm: "1rem" },
+              borderRadius: { sm: "10px" },
+              boxShadow: { sm: "0px 4px 10px rgba(0, 0, 0, 0.1)" },
+            }}
+          >
             <Box
               sx={{
-                margin: "0rem 2rem",
-                "@media (min-width:600px)": {
-                  marginTop: "10rem",
-                },
+                backgroundColor: "white",
+                margin: "0rem 1rem",
               }}
             >
               <Typography sx={{ fontWeight: "600", fontSize: "1.25rem" }}>

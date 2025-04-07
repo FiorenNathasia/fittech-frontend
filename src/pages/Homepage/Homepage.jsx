@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import ModalAdd from "../../components/Modal/Modal";
 import WorkoutList from "../../components/WorkoutList/WorkoutList";
+
 //Styling
 import {
   Box,
@@ -22,7 +23,7 @@ import FavoriteIcon from "@mui/icons-material/Favorite";
 import LogoutIcon from "@mui/icons-material/Logout";
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 import pill from "../../assets/pill.png";
-import background from "../../assets/fittechbg.jpg";
+import Sidebar from "../../components/Sidebar/Sidebar";
 
 function Homepage() {
   const [workoutsList, setWorkoutsList] = useState([]);
@@ -216,79 +217,12 @@ function Homepage() {
         </Box>
 
         {/* Sidebar for Desktop only */}
-        <Drawer
-          sx={{
-            display: { xs: "none", sm: "flex" },
-
-            "& .MuiDrawer-paper": {
-              width: 200, // Ensures the inner paper expands as well
-            },
-          }}
-          variant="permanent"
-        >
-          <List>
-            <Typography
-              variant="h2"
-              sx={{
-                fontSize: "2rem",
-                fontWeight: "700",
-                color: theme.palette.primary.main,
-                marginTop: "1rem",
-                marginLeft: "1.25rem",
-              }}
-            >
-              FIT
-              <img src={pill} alt="pill" width="10rem" />
-              TECH
-            </Typography>
-            <Typography
-              sx={{
-                fontSize: "1rem",
-                fontWeight: "500",
-                color: theme.palette.primary.main,
-                marginLeft: "1.25rem",
-              }}
-              variant="h2"
-            >
-              Welcome back {user?.firstName}
-            </Typography>
-            <ListItem onClick={() => handleTabChange("home")}>
-              <ListItemIcon>
-                <HomeIcon
-                  sx={{
-                    fontSize: "2.5rem",
-                    color: selectedTab === "home" ? "#4B51F4" : "#a1a1a1",
-                  }}
-                />
-              </ListItemIcon>
-              <Typography>Home</Typography>
-            </ListItem>
-            <ListItem onClick={() => handleTabChange("favourites")}>
-              <ListItemIcon>
-                <FavoriteIcon
-                  sx={{
-                    fontSize: "2.25rem",
-                    color: selectedTab === "favourites" ? "#FF6262" : "#a1a1a1",
-                  }}
-                />
-              </ListItemIcon>
-              <Typography>Favourites</Typography>
-            </ListItem>
-            <ListItem onClick={logout}>
-              <ListItemIcon
-                sx={{
-                  marginLeft: "0.5rem",
-                  "&:hover": {
-                    color: theme.palette.secondary.main,
-                  },
-                }}
-              >
-                <LogoutIcon sx={{ fontSize: "1.5rem" }} />
-              </ListItemIcon>
-              <Typography>Logout</Typography>
-            </ListItem>
-          </List>
-        </Drawer>
+        <Sidebar
+          fetchWorkouts={fetchWorkoutList}
+          fetchFavourites={fetchFavouriteWorkoutList}
+          logout={logout}
+          user={fetchUser}
+        />
 
         {/* Bottom nav */}
         <Box

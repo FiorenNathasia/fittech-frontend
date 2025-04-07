@@ -47,7 +47,7 @@ function Signup() {
   };
 
   const welcome = () => {
-    navigate("/");
+    navigate("/welcome");
   };
 
   return (
