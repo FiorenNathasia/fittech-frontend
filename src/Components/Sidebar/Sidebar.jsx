@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 import {
   Typography,
@@ -11,20 +11,24 @@ import {
 import HomeIcon from "@mui/icons-material/Home";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import LogoutIcon from "@mui/icons-material/Logout";
-import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
+
 import pill from "../../assets/pill.png";
 
-function Sidebar({ fetchWorkouts, fetchFavourites, logout, user }) {
-  const [selectedTab, setSelectedTab] = useState("home");
+function Sidebar({ user }) {
+  const navigate = useNavigate();
   const theme = useTheme();
 
-  const handleTabChange = (tab) => {
-    setSelectedTab(tab);
-    if (tab === "home") {
-      fetchWorkouts();
-    } else if (tab === "favourites") {
-      fetchFavourites();
-    }
+  const homepage = () => {
+    navigate("/homepage");
+  };
+
+  const logout = () => {
+    localStorage.removeItem("accessToken");
+    navigate("/login");
+  };
+
+  const favourites = () => {
+    navigate("/favourites");
   };
 
   return (
@@ -63,25 +67,23 @@ function Sidebar({ fetchWorkouts, fetchFavourites, logout, user }) {
             }}
             variant="h2"
           >
-            Welcome back {user?.firstName}
+            Welcome back {user}
           </Typography>
-          <ListItem onClick={() => handleTabChange("home")}>
+          <ListItem onClick={homepage}>
             <ListItemIcon>
               <HomeIcon
                 sx={{
                   fontSize: "2.5rem",
-                  color: selectedTab === "home" ? "#4B51F4" : "#a1a1a1",
                 }}
               />
             </ListItemIcon>
             <Typography>Home</Typography>
           </ListItem>
-          <ListItem onClick={() => handleTabChange("favourites")}>
+          <ListItem onClick={favourites}>
             <ListItemIcon>
               <FavoriteIcon
                 sx={{
                   fontSize: "2.25rem",
-                  color: selectedTab === "favourites" ? "#FF6262" : "#a1a1a1",
                 }}
               />
             </ListItemIcon>

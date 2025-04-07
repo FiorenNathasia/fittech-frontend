@@ -13,10 +13,6 @@ import {
   Paper,
   IconButton,
   useTheme,
-  Drawer,
-  List,
-  ListItem,
-  ListItemIcon,
 } from "@mui/material";
 import HomeIcon from "@mui/icons-material/Home";
 import FavoriteIcon from "@mui/icons-material/Favorite";
@@ -24,6 +20,7 @@ import LogoutIcon from "@mui/icons-material/Logout";
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 import pill from "../../assets/pill.png";
 import Sidebar from "../../components/Sidebar/Sidebar";
+import Header from "../../components/Header/Header";
 
 function Homepage() {
   const [workoutsList, setWorkoutsList] = useState([]);
@@ -95,14 +92,14 @@ function Homepage() {
     navigate("/login");
   };
 
-  const handleTabChange = (tab) => {
-    setSelectedTab(tab);
-    if (tab === "home") {
-      fetchWorkoutList();
-    } else if (tab === "favourites") {
-      fetchFavouriteWorkoutList();
-    }
-  };
+  // const handleTabChange = (tab) => {
+  //   setSelectedTab(tab);
+  //   if (tab === "home") {
+  //     fetchWorkoutList();
+  //   } else if (tab === "favourites") {
+  //     fetchFavouriteWorkoutList();
+  //   }
+  // };
 
   if (error) {
     return <div>Cannot display dashboard</div>;
@@ -124,56 +121,7 @@ function Homepage() {
         }}
       >
         {/* Sticky header */}
-        <Box
-          sx={{
-            display: { xs: "flex", sm: "none" },
-            justifyContent: "center",
-            alignItems: "center",
-            flexDirection: "column",
-            position: "fixed",
-            width: "100%",
-            top: 0,
-            left: 0,
-            zIndex: 1000,
-            padding: "1rem 0",
-            backgroundColor: theme.palette.background.default,
-          }}
-        >
-          <IconButton
-            onClick={logout}
-            sx={{
-              position: "absolute",
-              right: "1rem",
-              color: theme.palette.secondary.main,
-              width: "3rem",
-            }}
-          >
-            <LogoutIcon sx={{ fontSize: "1.5rem" }} />
-          </IconButton>
-          <Typography
-            variant="h2"
-            sx={{
-              fontSize: "2rem",
-              fontWeight: "700",
-              color: theme.palette.primary.main,
-              marginTop: "1rem",
-            }}
-          >
-            FIT
-            <img src={pill} alt="pill" width="10rem" />
-            TECH
-          </Typography>
-          <Typography
-            sx={{
-              fontSize: "1rem",
-              fontWeight: "500",
-              color: theme.palette.primary.main,
-            }}
-            variant="h2"
-          >
-            Welcome back {user?.firstName}
-          </Typography>
-        </Box>
+        <Header user={fetchUser} />
         {/* Workout list */}
         <Box
           sx={{
@@ -217,12 +165,7 @@ function Homepage() {
         </Box>
 
         {/* Sidebar for Desktop only */}
-        <Sidebar
-          fetchWorkouts={fetchWorkoutList}
-          fetchFavourites={fetchFavouriteWorkoutList}
-          logout={logout}
-          user={fetchUser}
-        />
+        <Sidebar logout={logout} user={fetchUser} />
 
         {/* Bottom nav */}
         <Box

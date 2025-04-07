@@ -5,11 +5,12 @@ import Homepage from "./pages/Homepage/Homepage";
 import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
 import WorkoutPage from "./pages/WorkoutPage/WorkoutPage";
 import Welcome from "./pages/Welcome/Welcome";
+import NormalList from "./pages/NormalList/NormalList";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import "@fontsource/bebas-neue";
 import "@fontsource/montserrat";
 import "@fontsource/bebas-neue";
-import NormalList from "./pages/NormalList/NormalList";
+import Favourites from "./pages/Favourites/Favourites";
 
 function App() {
   const theme = createTheme({
@@ -75,6 +76,14 @@ function App() {
               element={
                 <ProtectedRoute>
                   <NormalList />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/favourites"
+              element={
+                <ProtectedRoute>
+                  <Favourites />
                 </ProtectedRoute>
               }
             />

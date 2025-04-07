@@ -1,20 +1,26 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
 import WorkoutList from "../../components/WorkoutList/WorkoutList";
 //Styling
 import { Box } from "@mui/material";
+import Sidebar from "../../components/Sidebar/Sidebar";
+import Header from "../../components/Header/Header";
 
-function NormalList() {
+function Favourites() {
   const [workoutsList, setWorkoutsList] = useState([]);
+  const [user, setUser] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  const fetchWorkoutList = async () => {
+  const fetchFavouriteWorkoutList = async () => {
     const token = localStorage.getItem("accessToken");
     try {
       const { data } = await axios.get("http://localhost:8080/api/workouts", {
         headers: {
           Authorization: "Bearer " + token,
+        },
+        params: {
+          filterFavourites: true,
         },
       });
       setWorkoutsList(data.data);
@@ -23,8 +29,23 @@ function NormalList() {
     }
   };
 
+  const fetchUser = async () => {
+    const token = localStorage.getItem("accessToken");
+    try {
+      const { data } = await axios.get("http://localhost:8080/api/user", {
+        headers: {
+          Authorization: "Bearer " + token,
+        },
+      });
+      setUser(data.data);
+    } catch (error) {
+      setError(error.response.data.message);
+    }
+  };
+
   const fetchPageData = async () => {
-    await fetchWorkoutList();
+    await fetchFavouriteWorkoutList();
+    await fetchUser();
     setIsLoading(false);
   };
 
@@ -42,6 +63,7 @@ function NormalList() {
 
   return (
     <>
+      <Header user={fetchUser} />
       <Box
         sx={{
           position: "relative",
@@ -53,10 +75,15 @@ function NormalList() {
           justifyContent: "center",
         }}
       >
-        <WorkoutList workouts={workoutsList} fetchWorkouts={fetchWorkoutList} />
+        <WorkoutList
+          workouts={workoutsList}
+          fetchWorkouts={fetchFavouriteWorkoutList}
+        />
       </Box>
+      {/* Sidebar for Desktop only */}
+      <Sidebar user={fetchUser} />
     </>
   );
 }
 
-export default NormalList;
+export default Favourites;
