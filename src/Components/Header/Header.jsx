@@ -2,7 +2,7 @@ import { Box, Typography, IconButton, useTheme } from "@mui/material";
 import LogoutIcon from "@mui/icons-material/Logout";
 import pill from "../../assets/pill.png";
 
-function Header({ user }) {
+function Header({ firstName }) {
   const theme = useTheme();
 
   const logout = () => {
@@ -58,7 +58,7 @@ function Header({ user }) {
           }}
           variant="h2"
         >
-          Welcome back {user?.firstName}
+          Welcome back {firstName}
         </Typography>
       </Box>
     </>

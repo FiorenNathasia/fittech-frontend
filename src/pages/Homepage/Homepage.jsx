@@ -1,34 +1,21 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import ModalAdd from "../../components/Modal/Modal";
 import WorkoutList from "../../components/WorkoutList/WorkoutList";
-
-//Styling
-import {
-  Box,
-  Typography,
-  BottomNavigation,
-  BottomNavigationAction,
-  Paper,
-  IconButton,
-  useTheme,
-} from "@mui/material";
-import HomeIcon from "@mui/icons-material/Home";
-import FavoriteIcon from "@mui/icons-material/Favorite";
-import LogoutIcon from "@mui/icons-material/Logout";
-import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
-import pill from "../../assets/pill.png";
 import Sidebar from "../../components/Sidebar/Sidebar";
 import Header from "../../components/Header/Header";
+import BottomNavigationTab from "../../components/BottomNavigationTab/BottomNavigationTab";
+import ModalButton from "../../components/ModalButton/ModalButton";
+import ModalAdd from "../../components/Modal/Modal";
+//Styling
+import { Box, useTheme } from "@mui/material";
 
 function Homepage() {
   const [workoutsList, setWorkoutsList] = useState([]);
   const [user, setUser] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [openModal, setOpenModal] = useState(false);
-  const [selectedTab, setSelectedTab] = useState("home");
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const navigate = useNavigate();
   const theme = useTheme();
 
@@ -38,23 +25,6 @@ function Homepage() {
       const { data } = await axios.get("http://localhost:8080/api/workouts", {
         headers: {
           Authorization: "Bearer " + token,
-        },
-      });
-      setWorkoutsList(data.data);
-    } catch (error) {
-      setError(error.response.data.message);
-    }
-  };
-
-  const fetchFavouriteWorkoutList = async () => {
-    const token = localStorage.getItem("accessToken");
-    try {
-      const { data } = await axios.get("http://localhost:8080/api/workouts", {
-        headers: {
-          Authorization: "Bearer " + token,
-        },
-        params: {
-          filterFavourites: true,
         },
       });
       setWorkoutsList(data.data);
@@ -121,7 +91,7 @@ function Homepage() {
         }}
       >
         {/* Sticky header */}
-        <Header user={fetchUser} />
+        <Header firstName={user.firstName} />
         {/* Workout list */}
         <Box
           sx={{
@@ -139,126 +109,22 @@ function Homepage() {
             fetchWorkouts={fetchWorkoutList}
           />
         </Box>
-        <Box
-          sx={{
-            position: "fixed",
-            bottom: "2rem",
-            right: "2rem",
-            display: { xs: "none", sm: "block" },
-          }}
-        >
-          <IconButton
-            onClick={() => setOpenModal(true)}
-            sx={{
-              backgroundColor: theme.palette.primary.main,
-              color: "#fff",
-              "&:hover": {
-                backgroundColor: theme.palette.secondary.main,
-              },
-              width: "4rem",
-              height: "4rem",
-              boxShadow: 3,
-            }}
-          >
-            <AddCircleOutlineIcon sx={{ fontSize: "3rem" }} />
-          </IconButton>
-        </Box>
+        {/* Modal Button for Desktop only */}
+        <ModalButton openModal={() => setIsModalOpen(true)} />
 
         {/* Sidebar for Desktop only */}
-        <Sidebar logout={logout} user={fetchUser} />
+        <Sidebar logout={logout} firstName={user.firstName} />
 
-        {/* Bottom nav */}
-        <Box
-          sx={{
-            bottom: 0,
-            position: "fixed",
-            display: { xs: "flex", sm: "none" },
-            flexDirection: "column",
-            alignItems: "center",
-            backgroundColor: theme.palette.background.default,
-            paddingBottom: 2,
-            borderTopLeftRadius: "50px",
-            borderTopRightRadius: "50px",
-            width: "90%",
-          }}
-        >
-          <Paper
-            sx={{
-              height: "5rem",
-              backgroundColor: theme.palette.background.default,
-              width: "100%",
-              borderRadius: "50px",
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-              borderStyle: "solid",
-              borderTop: "5px solid #4B51F4",
-              borderRight: "5px solid #FF6262",
-              borderBottom: "5px solid #FF6262",
-              borderLeft: "5px solid #4B51F4",
-            }}
-            elevation={3}
-          >
-            <BottomNavigation
-              sx={{
-                backgroundColor: "transparent",
-                width: "100%",
-                display: "flex",
-                justifyContent: "space-around",
-                alignItems: "center",
-              }}
-            >
-              <BottomNavigationAction
-                label="Recents"
-                icon={
-                  <HomeIcon
-                    sx={{
-                      fontSize: "2.5rem",
-                      color: selectedTab === "home" ? "#4B51F4" : "#a1a1a1", // Change color when selected
-                    }}
-                  />
-                }
-                onClick={() => handleTabChange("home")}
-              />
-
-              <IconButton
-                onClick={() => {
-                  setOpenModal(true);
-                }}
-              >
-                <AddCircleOutlineIcon
-                  sx={{
-                    fontSize: "4rem",
-                    color: "#a1a1a1",
-                    ":hover": {
-                      color: theme.palette.secondary.main,
-                    },
-                  }}
-                />
-              </IconButton>
-              {openModal && (
-                <ModalAdd
-                  closeModal={() => setOpenModal(false)}
-                  fetchWorkouts={fetchWorkoutList}
-                />
-              )}
-              <BottomNavigationAction
-                label="Favourites"
-                icon={
-                  <FavoriteIcon
-                    sx={{
-                      fontSize: "2.25rem",
-                      color:
-                        selectedTab === "favourites" ? "#FF6262" : "#a1a1a1",
-                    }}
-                  />
-                }
-                onClick={() => handleTabChange("favourites")}
-              />
-            </BottomNavigation>
-          </Paper>
-        </Box>
+        {/* Bottom nav for mobile only*/}
+        <BottomNavigationTab openModal={() => setIsModalOpen(true)} />
       </Box>
+
+      {isModalOpen && (
+        <ModalAdd
+          closeModal={() => setIsModalOpen(false)}
+          fetchWorkouts={fetchWorkoutList}
+        />
+      )}
     </>
   );
 }

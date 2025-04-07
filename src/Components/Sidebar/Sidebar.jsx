@@ -11,10 +11,9 @@ import {
 import HomeIcon from "@mui/icons-material/Home";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import LogoutIcon from "@mui/icons-material/Logout";
-
 import pill from "../../assets/pill.png";
 
-function Sidebar({ user }) {
+function Sidebar({ firstName }) {
   const navigate = useNavigate();
   const theme = useTheme();
 
@@ -67,7 +66,7 @@ function Sidebar({ user }) {
             }}
             variant="h2"
           >
-            Welcome back {user}
+            Welcome back {firstName}
           </Typography>
           <ListItem onClick={homepage}>
             <ListItemIcon>
