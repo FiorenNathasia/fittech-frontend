@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import WorkoutList from "../../components/WorkoutList/WorkoutList";
 import ModalAdd from "../../components/Modal/Modal";
@@ -15,6 +16,7 @@ function Favourites() {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const navigate = useNavigate();
   const theme = useTheme();
 
   const fetchFavouriteWorkoutList = async () => {
@@ -48,20 +50,6 @@ function Favourites() {
     }
   };
 
-  const fetchWorkoutList = async () => {
-    const token = localStorage.getItem("accessToken");
-    try {
-      const { data } = await axios.get("http://localhost:8080/api/workouts", {
-        headers: {
-          Authorization: "Bearer " + token,
-        },
-      });
-      setWorkoutsList(data.data);
-    } catch (error) {
-      setError(error.response.data.message);
-    }
-  };
-
   const fetchPageData = async () => {
     await fetchFavouriteWorkoutList();
     await fetchUser();
@@ -71,6 +59,10 @@ function Favourites() {
   useEffect(() => {
     fetchPageData();
   }, []);
+
+  const navigateToHome = () => {
+    navigate("/homepage");
+  };
 
   if (error) {
     return <div>Cannot display dashboard</div>;
@@ -123,7 +115,7 @@ function Favourites() {
       {isModalOpen && (
         <ModalAdd
           closeModal={() => setIsModalOpen(false)}
-          fetchWorkouts={fetchWorkoutList}
+          onSaveComplete={navigateToHome}
         />
       )}
     </>

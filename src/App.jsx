@@ -72,14 +72,6 @@ function App() {
               }
             />
             <Route
-              path="/"
-              element={
-                <ProtectedRoute>
-                  <NormalList />
-                </ProtectedRoute>
-              }
-            />
-            <Route
               path="/favourites"
               element={
                 <ProtectedRoute>

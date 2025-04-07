@@ -122,7 +122,7 @@ function Homepage() {
       {isModalOpen && (
         <ModalAdd
           closeModal={() => setIsModalOpen(false)}
-          fetchWorkouts={fetchWorkoutList}
+          onSaveComplete={fetchWorkoutList}
         />
       )}
     </>

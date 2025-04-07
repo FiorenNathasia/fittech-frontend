@@ -10,7 +10,7 @@ import {
   useTheme,
 } from "@mui/material";
 
-function ModalAdd({ closeModal, fetchWorkouts }) {
+function ModalAdd({ closeModal, onSaveComplete }) {
   const [url, setUrl] = useState("");
   const [isSaving, setIsSaving] = useState(false);
   const [error, setError] = useState(null);
@@ -29,7 +29,7 @@ function ModalAdd({ closeModal, fetchWorkouts }) {
         },
       });
       closeModal();
-      fetchWorkouts();
+      onSaveComplete();
     } catch (error) {
       setError(error.response.data.message);
     }
