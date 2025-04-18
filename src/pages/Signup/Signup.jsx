@@ -5,13 +5,13 @@ import axios from "axios";
 //Styling
 import {
   Box,
-  Container,
   TextField,
   Typography,
   Button,
   Stack,
   IconButton,
   Link,
+  CircularProgress,
 } from "@mui/material";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import pill from "../../assets/pill.png";
@@ -23,10 +23,12 @@ function Signup() {
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [isSignUp, setIsSignUp] = useState(false);
   const [error, setError] = useState(null);
   const navigate = useNavigate();
 
   const handleSubmit = async () => {
+    setIsSignUp(true);
     const user = {
       firstName,
       lastName,
@@ -44,6 +46,7 @@ function Signup() {
       console.log(error);
       setError(error.response.data.message);
     }
+    setIsSignUp(false);
   };
 
   const welcome = () => {
@@ -279,8 +282,10 @@ function Signup() {
             >
               <Button
                 variant="outlined"
-                onClick={handleSubmit}
+                onClick={!isSignUp ? handleSubmit : undefined}
                 sx={{
+                  pointerEvents: isSignUp ? "none" : "auto",
+                  opacity: isSignUp ? 0.6 : 1,
                   borderStyle: "solid",
                   borderTop: "3px solid #4B51F4",
                   borderRight: "3px solid #FF6262",
@@ -301,7 +306,21 @@ function Signup() {
                   fontSize: "1.25rem",
                 }}
               >
-                SIGNUP
+                {isSignUp ? (
+                  <>
+                    Signing Up...
+                    <CircularProgress
+                      size={20}
+                      sx={{
+                        color: "#4B51F4",
+                        position: "absolute",
+                        right: 16,
+                      }}
+                    />
+                  </>
+                ) : (
+                  "SIGNUP "
+                )}
               </Button>
               <Typography variant="h3" sx={{ fontSize: "1rem" }}>
                 Already a member?{" "}

@@ -1,9 +1,13 @@
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Box, Typography, Stack, Button } from "@mui/material";
+import { CircularProgress } from "@mui/material";
+import GradientCircular from "../../components/GradientCircular/GradientCircular";
 import pill from "../../assets/pill.png";
 import landingbg from "../../assets/landingbg.mp4";
 
 function Welcome() {
+  const [videoLoading, setVideoLoading] = useState(true);
   const navigate = useNavigate();
 
   const signup = () => {
@@ -24,11 +28,25 @@ function Welcome() {
           overflow: "hidden",
         }}
       >
+        {videoLoading && (
+          <Box
+            sx={{
+              position: "absolute",
+              top: "50%",
+              left: "50%",
+              transform: "translate(-50%, -50%)",
+              zIndex: 2,
+            }}
+          >
+            <GradientCircular size={70} thickness={3} />
+          </Box>
+        )}
         <video
           autoPlay
           loop
           muted
           playsInline
+          onCanPlayThrough={() => setVideoLoading(false)}
           style={{
             position: "absolute",
             top: "50%",

@@ -12,6 +12,7 @@ import {
   IconButton,
   Link,
   useTheme,
+  CircularProgress,
 } from "@mui/material";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import pill from "../../assets/pill.png";
@@ -21,11 +22,13 @@ import mobile from "../../assets/mobilebg.jpg";
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [isLogIn, setIsLogIn] = useState(false);
   const [error, setError] = useState(null);
   const navigate = useNavigate();
   const theme = useTheme();
 
   const handleSubmit = async () => {
+    setIsLogIn(true);
     const user = {
       email,
       password,
@@ -37,11 +40,14 @@ function Login() {
       );
       const accessToken = response.data.data.accessToken;
       localStorage.setItem("accessToken", accessToken);
+
       navigate("/homepage");
     } catch (error) {
       setError(error.response.data.message);
     }
+    setIsLogIn(false);
   };
+
   const welcome = () => {
     navigate("/welcome");
   };
@@ -227,8 +233,10 @@ function Login() {
             >
               <Button
                 variant="outlined"
-                onClick={handleSubmit}
+                onClick={!isLogIn ? handleSubmit : undefined}
                 sx={{
+                  pointerEvents: isLogIn ? "none" : "auto",
+                  opacity: isLogIn ? 0.6 : 1,
                   borderStyle: "solid",
                   borderTop: "3px solid #4B51F4",
                   borderRight: "3px solid #FF6262",
@@ -249,7 +257,21 @@ function Login() {
                   fontSize: "1.25rem",
                 }}
               >
-                LOGIN
+                {isLogIn ? (
+                  <>
+                    Logging In...
+                    <CircularProgress
+                      size={20}
+                      sx={{
+                        color: "#4B51F4",
+                        position: "absolute",
+                        right: 16,
+                      }}
+                    />
+                  </>
+                ) : (
+                  "LOGIN"
+                )}
               </Button>
               <Typography variant="h3" sx={{ fontSize: "1rem" }}>
                 Not a member yet?{" "}
