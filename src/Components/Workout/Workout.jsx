@@ -1,10 +1,11 @@
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 //Styling
 import {
   ListItem,
-  Button,
+  Box,
   Card,
   CardActionArea,
   CardMedia,
@@ -20,6 +21,7 @@ import FavoriteIcon from "@mui/icons-material/Favorite";
 function Workout({ id, title, image, isFavourite, fetchWorkouts }) {
   const [isDeleting, setIsDeleting] = useState(false);
   const [favourite, setFavourite] = useState(isFavourite);
+  const navigate = useNavigate();
   const theme = useTheme();
 
   const handleFavourite = async () => {
@@ -55,35 +57,45 @@ function Workout({ id, title, image, isFavourite, fetchWorkouts }) {
     setIsDeleting(false);
   };
 
+  const page = () => {
+    navigate(`/workouts/${id}`);
+  };
+
   return (
     <>
       <ListItem sx={{ paddingRight: 0 }}>
-        <Link to={`/workouts/${id}`} style={{ textDecoration: "none" }}>
-          <Card
-            sx={{
-              minWidth: 330,
-              maxWidth: 330,
-              maxHeigt: 50,
-              backgroundColor: theme.palette.background.paper,
-              borderRadius: "20px",
-              boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.1)",
-            }}
-          >
-            <CardActionArea sx={{ padding: "1rem" }}>
-              <CardMedia
-                component="img"
-                image={image}
-                alt={title}
-                sx={{ borderRadius: "10px" }}
-              />
-              <CardContent sx={{ paddingBottom: 0.5 }}>
-                <Typography
-                  variant="h3"
-                  sx={{ fontSize: "1rem", color: theme.palette.primary.main }}
-                >
-                  {title}
-                </Typography>
-              </CardContent>
+        <Card
+          sx={{
+            minWidth: 330,
+            maxWidth: 330,
+            maxHeigt: 50,
+            backgroundColor: theme.palette.background.paper,
+            borderRadius: "20px",
+            boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.1)",
+          }}
+        >
+          <CardActionArea sx={{ padding: "1rem" }} onClick={page}>
+            {/* <Link to={`/workouts/${id}`} style={{ textDecoration: "none" }}> */}
+            <CardMedia
+              component="img"
+              image={image}
+              alt={title}
+              sx={{ borderRadius: "10px" }}
+            />
+            <CardContent sx={{ paddingBottom: 0.5 }}>
+              <Typography
+                variant="h3"
+                sx={{ fontSize: "1rem", color: theme.palette.primary.main }}
+              >
+                {title}
+              </Typography>
+            </CardContent>
+            <Box
+              onClick={(e) => {
+                e.stopPropagation();
+              }}
+              sx={{ width: "6rem" }}
+            >
               <IconButton
                 onClick={handleFavourite}
                 variant="outlined"
@@ -115,9 +127,10 @@ function Workout({ id, title, image, isFavourite, fetchWorkouts }) {
                   {isDeleting ? "Deleting..." : "Delete"}
                 </DeleteIcon>
               </IconButton>
-            </CardActionArea>
-          </Card>
-        </Link>
+            </Box>
+            {/* </Link> */}
+          </CardActionArea>
+        </Card>
       </ListItem>
     </>
   );

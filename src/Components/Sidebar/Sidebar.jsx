@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 
 import {
   Typography,
@@ -15,7 +15,9 @@ import pill from "../../assets/pill.png";
 
 function Sidebar({ firstName }) {
   const navigate = useNavigate();
+  const location = useLocation();
   const theme = useTheme();
+  const isActive = (path) => location.pathname === path;
 
   const homepage = () => {
     navigate("/homepage");
@@ -68,21 +70,31 @@ function Sidebar({ firstName }) {
           >
             Welcome back {firstName}
           </Typography>
-          <ListItem onClick={homepage}>
+          <ListItem
+            onClick={homepage}
+            selected={isActive("/homepage")}
+            sx={{ marginTop: "1.5rem" }}
+          >
             <ListItemIcon>
               <HomeIcon
                 sx={{
                   fontSize: "2.5rem",
+                  color: isActive("/homepage")
+                    ? theme.palette.primary.main
+                    : "inherit",
                 }}
               />
             </ListItemIcon>
             <Typography>Home</Typography>
           </ListItem>
-          <ListItem onClick={favourites}>
+          <ListItem onClick={favourites} selected={isActive("/favourites")}>
             <ListItemIcon>
               <FavoriteIcon
                 sx={{
                   fontSize: "2.25rem",
+                  color: isActive("/favourites")
+                    ? theme.palette.primary.main
+                    : "inherit",
                 }}
               />
             </ListItemIcon>

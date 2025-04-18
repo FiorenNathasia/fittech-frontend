@@ -62,15 +62,6 @@ function Homepage() {
     navigate("/login");
   };
 
-  // const handleTabChange = (tab) => {
-  //   setSelectedTab(tab);
-  //   if (tab === "home") {
-  //     fetchWorkoutList();
-  //   } else if (tab === "favourites") {
-  //     fetchFavouriteWorkoutList();
-  //   }
-  // };
-
   if (error) {
     return <div>Cannot display dashboard</div>;
   }

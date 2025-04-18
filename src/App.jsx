@@ -11,6 +11,7 @@ import "@fontsource/bebas-neue";
 import "@fontsource/montserrat";
 import "@fontsource/bebas-neue";
 import Favourites from "./pages/Favourites/Favourites";
+import { Box } from "@mui/material";
 
 function App() {
   const theme = createTheme({
@@ -56,7 +57,7 @@ function App() {
   });
 
   return (
-    <>
+    <Box height="100vh" sx={{ backgroundColor: "#F5F5F5" }}>
       <ThemeProvider theme={theme}>
         <BrowserRouter>
           <Routes>
@@ -90,7 +91,7 @@ function App() {
           </Routes>
         </BrowserRouter>
       </ThemeProvider>
-    </>
+    </Box>
   );
 }
 

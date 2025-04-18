@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import {
   Box,
   BottomNavigation,
@@ -13,7 +13,10 @@ import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 
 function BottomNavigationTab({ openModal }) {
   const navigate = useNavigate();
+  const location = useLocation();
   const theme = useTheme();
+
+  const currentPath = location.pathname;
 
   const homepage = () => {
     navigate("/homepage");
@@ -36,7 +39,10 @@ function BottomNavigationTab({ openModal }) {
           paddingBottom: 2,
           borderTopLeftRadius: "50px",
           borderTopRightRadius: "50px",
-          width: "90%",
+          width: "100%",
+          maxWidth: "22rem",
+          left: "50%",
+          transform: "translateX(-50%)",
         }}
       >
         <Paper
@@ -57,6 +63,7 @@ function BottomNavigationTab({ openModal }) {
           elevation={3}
         >
           <BottomNavigation
+            value={currentPath}
             sx={{
               backgroundColor: "transparent",
               width: "100%",
@@ -66,12 +73,15 @@ function BottomNavigationTab({ openModal }) {
             }}
           >
             <BottomNavigationAction
-              label="Recents"
+              value="/homepage"
               icon={
                 <HomeIcon
                   sx={{
                     fontSize: "2.5rem",
-                    color: "#a1a1a1",
+                    color:
+                      currentPath === "/homepage"
+                        ? theme.palette.primary.main
+                        : "#a1a1a1",
                   }}
                 />
               }
@@ -90,12 +100,15 @@ function BottomNavigationTab({ openModal }) {
               />
             </IconButton>
             <BottomNavigationAction
-              label="Favourites"
+              value="/favourites"
               icon={
                 <FavoriteIcon
                   sx={{
                     fontSize: "2.25rem",
-                    color: "#a1a1a1",
+                    color:
+                      currentPath === "/favourites"
+                        ? theme.palette.primary.main
+                        : "#a1a1a1",
                   }}
                 />
               }

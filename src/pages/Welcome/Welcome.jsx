@@ -37,7 +37,7 @@ function Welcome() {
             height: "100%",
             objectFit: "cover",
             transform: "translate(-50%, -50% )",
-            zIndex: -1,
+            zIndex: 0,
           }}
         >
           <source src={landingbg} type="video/mp4" />
