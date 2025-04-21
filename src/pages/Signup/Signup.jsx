@@ -181,12 +181,15 @@ function Signup() {
                   },
                 }}
                 InputProps={{
+                  disableUnderline: true,
                   sx: {
                     borderRadius: "20px",
                     backgroundColor: "#282A33",
                     opacity: 0.5,
                     width: "15rem",
                     height: "3rem",
+                    color: "white",
+                    fontWeight: "300",
                   },
                 }}
               />
@@ -205,12 +208,15 @@ function Signup() {
                   },
                 }}
                 InputProps={{
+                  disableUnderline: true,
                   sx: {
                     borderRadius: "20px",
                     backgroundColor: "#282A33",
                     opacity: 0.5,
                     width: "15rem",
                     height: "3rem",
+                    color: "white",
+                    fontWeight: "300",
                   },
                 }}
               />
@@ -229,6 +235,7 @@ function Signup() {
                   },
                 }}
                 InputProps={{
+                  disableUnderline: true,
                   sx: {
                     borderRadius: "20px",
                     backgroundColor: "#282A33",
@@ -236,6 +243,8 @@ function Signup() {
                     width: "15rem",
                     height: "3rem",
                     letterSpacing: -1,
+                    color: "white",
+                    fontWeight: "300",
                   },
                 }}
               />
@@ -254,12 +263,15 @@ function Signup() {
                   },
                 }}
                 InputProps={{
+                  disableUnderline: true,
                   sx: {
                     borderRadius: "20px",
                     backgroundColor: "#282A33",
                     opacity: 0.5,
                     width: "15rem",
                     height: "3rem",
+                    color: "white",
+                    fontWeight: "300",
                   },
                 }}
               />

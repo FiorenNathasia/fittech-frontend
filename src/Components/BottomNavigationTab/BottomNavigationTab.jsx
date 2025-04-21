@@ -78,10 +78,7 @@ function BottomNavigationTab({ openModal }) {
                 <HomeIcon
                   sx={{
                     fontSize: "2.5rem",
-                    color:
-                      currentPath === "/homepage"
-                        ? theme.palette.primary.main
-                        : "#a1a1a1",
+                    color: currentPath === "/homepage" ? "#4B51F4" : "#a1a1a1",
                   }}
                 />
               }
@@ -106,9 +103,7 @@ function BottomNavigationTab({ openModal }) {
                   sx={{
                     fontSize: "2.25rem",
                     color:
-                      currentPath === "/favourites"
-                        ? theme.palette.primary.main
-                        : "#a1a1a1",
+                      currentPath === "/favourites" ? "#FF6262" : "#a1a1a1",
                   }}
                 />
               }

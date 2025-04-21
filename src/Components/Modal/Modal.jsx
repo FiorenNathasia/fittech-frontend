@@ -8,6 +8,7 @@ import {
   Button,
   Modal,
   useTheme,
+  CircularProgress,
 } from "@mui/material";
 
 function ModalAdd({ closeModal, onSaveComplete }) {
@@ -114,12 +115,11 @@ function ModalAdd({ closeModal, onSaveComplete }) {
               Cancel
             </Button>
             <Button
-              onClick={handleSubmit}
-              disabled={isSaving}
+              onClick={!isSaving ? handleSubmit : undefined}
               variant="filled"
               sx={{
                 borderRadius: "25px",
-                width: "5rem",
+                width: isSaving ? "8rem" : "5rem",
                 height: "2.5rem",
                 background: "#4B51F4",
                 color: theme.palette.primary.contrastText,
@@ -131,7 +131,21 @@ function ModalAdd({ closeModal, onSaveComplete }) {
                 },
               }}
             >
-              {isSaving ? "Saving..." : "Save"}
+              {isSaving ? (
+                <>
+                  Saving
+                  <CircularProgress
+                    size={20}
+                    sx={{
+                      color: "red",
+                      position: "absolute",
+                      right: 12,
+                    }}
+                  />
+                </>
+              ) : (
+                "SAVE"
+              )}
             </Button>
           </Box>
         </Box>

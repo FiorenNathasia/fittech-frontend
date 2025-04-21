@@ -4,7 +4,6 @@ import axios from "axios";
 //Styling
 import {
   Box,
-  Container,
   TextField,
   Typography,
   Button,
@@ -50,6 +49,17 @@ function Login() {
 
   const welcome = () => {
     navigate("/welcome");
+  };
+
+  //Demo User Login
+  const demoUser = {
+    email: "demouser@email.com",
+    password: "123456789",
+  };
+
+  const demoLoginData = () => {
+    setEmail(demoUser.email);
+    setPassword(demoUser.password);
   };
 
   return (
@@ -161,9 +171,9 @@ function Login() {
                 justifyContent: "center",
                 flexDirection: "column",
                 alignItems: "center",
-                gap: "15px",
+                gap: "10px",
                 paddingTop: "1.25rem",
-                paddingBottom: "1.25rem",
+                paddingBottom: "0.5rem",
               }}
             >
               <TextField
@@ -181,12 +191,15 @@ function Login() {
                   },
                 }}
                 InputProps={{
+                  disableUnderline: true,
                   sx: {
                     borderRadius: "20px",
                     backgroundColor: "#282A33",
                     opacity: 0.5,
                     width: "15rem",
                     height: "3rem",
+                    color: "white",
+                    fontWeight: "300",
                   },
                 }}
               />
@@ -205,12 +218,15 @@ function Login() {
                   },
                 }}
                 InputProps={{
+                  disableUnderline: true,
                   sx: {
                     borderRadius: "20px",
                     backgroundColor: "#282A33",
                     opacity: 0.5,
                     width: "15rem",
                     height: "3rem",
+                    color: "white",
+                    fontWeight: "300",
                   },
                 }}
               />
@@ -228,7 +244,7 @@ function Login() {
                 display: "flex",
                 justifyContent: "center",
                 alignItems: "center",
-                gap: "10px",
+                gap: "15px",
               }}
             >
               <Button
@@ -277,6 +293,19 @@ function Login() {
                 Not a member yet?{" "}
                 <Link href="/signup" component="a" sx={{ color: "#4B51F4" }}>
                   Signup Here
+                </Link>
+              </Typography>
+              <Typography variant="h3" sx={{ fontSize: "0.9rem" }}>
+                Are you here for a demonstration?{" "}
+                <Link
+                  onClick={demoLoginData}
+                  sx={{
+                    color: "#4B51F4",
+                    textDecoration: "underline",
+                    cursor: "pointer",
+                  }}
+                >
+                  Autofill here
                 </Link>
               </Typography>
             </Stack>

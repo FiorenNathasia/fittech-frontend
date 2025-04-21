@@ -7,8 +7,10 @@ import Header from "../../components/Header/Header";
 import BottomNavigationTab from "../../components/BottomNavigationTab/BottomNavigationTab";
 import ModalButton from "../../components/ModalButton/ModalButton";
 import ModalAdd from "../../components/Modal/Modal";
+import Linear from "../../components/Linear/Linear";
 //Styling
 import { Box, useTheme } from "@mui/material";
+import CannotDisplay from "../../components/CannotDisplay/CannotDisplay";
 
 function Homepage() {
   const [workoutsList, setWorkoutsList] = useState([]);
@@ -63,11 +65,11 @@ function Homepage() {
   };
 
   if (error) {
-    return <div>Cannot display dashboard</div>;
+    return <CannotDisplay />;
   }
 
   if (isLoading) {
-    return <div>Loading...</div>;
+    return <Linear />;
   }
 
   return (

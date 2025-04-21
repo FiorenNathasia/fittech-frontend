@@ -2,6 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import ReactPlayer from "react-player";
+import Linear from "../../components/Linear/Linear";
 //Styling
 import {
   Box,
@@ -14,10 +15,10 @@ import {
   ListItemText,
   ListItemIcon,
 } from "@mui/material";
-import OpenInNewIcon from "@mui/icons-material/OpenInNew";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import pill from "../../assets/pill.png";
 import Sidebar from "../../components/Sidebar/Sidebar";
+import CannotDisplay from "../../components/CannotDisplay/CannotDisplay";
 
 function WorkoutPage() {
   const [workout, setWorkout] = useState(null);
@@ -55,9 +56,11 @@ function WorkoutPage() {
   const back = () => {
     navigate("/homepage");
   };
-
+  if (error) {
+    return <CannotDisplay />;
+  }
   if (isLoading) {
-    return <div>Loading...</div>;
+    return <Linear />;
   }
 
   return (
@@ -113,7 +116,6 @@ function WorkoutPage() {
           <Card
             sx={{
               width: { xs: "100%", sm: "40rem" },
-              margin: "0.5rem",
               marginTop: { xs: "1rem", sm: "0" },
             }}
           >

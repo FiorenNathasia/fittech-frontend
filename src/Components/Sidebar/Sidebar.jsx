@@ -79,9 +79,7 @@ function Sidebar({ firstName }) {
               <HomeIcon
                 sx={{
                   fontSize: "2.5rem",
-                  color: isActive("/homepage")
-                    ? theme.palette.primary.main
-                    : "inherit",
+                  color: isActive("/homepage") ? "#4B51F4" : "#a1a1a1",
                 }}
               />
             </ListItemIcon>
@@ -92,9 +90,7 @@ function Sidebar({ firstName }) {
               <FavoriteIcon
                 sx={{
                   fontSize: "2.25rem",
-                  color: isActive("/favourites")
-                    ? theme.palette.primary.main
-                    : "inherit",
+                  color: isActive("/favourites") ? "#FF6262" : "#a1a1a1",
                 }}
               />
             </ListItemIcon>

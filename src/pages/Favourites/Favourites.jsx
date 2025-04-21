@@ -3,12 +3,14 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import WorkoutList from "../../components/WorkoutList/WorkoutList";
 import ModalAdd from "../../components/Modal/Modal";
+import Linear from "../../components/Linear/Linear";
 //Styling
 import { Box, useTheme } from "@mui/material";
 import Sidebar from "../../components/Sidebar/Sidebar";
 import Header from "../../components/Header/Header";
 import BottomNavigationTab from "../../components/BottomNavigationTab/BottomNavigationTab";
 import ModalButton from "../../components/ModalButton/ModalButton";
+import CannotDisplay from "../../components/CannotDisplay/CannotDisplay";
 
 function Favourites() {
   const [workoutsList, setWorkoutsList] = useState([]);
@@ -65,11 +67,11 @@ function Favourites() {
   };
 
   if (error) {
-    return <div>Cannot display dashboard</div>;
+    return <CannotDisplay />;
   }
 
   if (isLoading) {
-    return <div>Loading...</div>;
+    return <Linear />;
   }
 
   return (
