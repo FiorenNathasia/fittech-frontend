@@ -1,8 +1,10 @@
 import { Box, Typography, IconButton, useTheme } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 import LogoutIcon from "@mui/icons-material/Logout";
 import pill from "../../assets/pill.png";
 
 function Header({ firstName }) {
+  const navigate = useNavigate();
   const theme = useTheme();
 
   const logout = () => {

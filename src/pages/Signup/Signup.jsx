@@ -101,7 +101,7 @@ function Signup() {
             flexDirection: "column",
             backgroundColor: "rgba(217, 217, 217, 0.5)",
             backdropFilter: "blur(10px)",
-            height: "530px",
+            height: { xs: "490px", sm: "530px" },
             width: "346px",
             borderStyle: "solid",
             borderTop: "3px solid #4B51F4",
@@ -109,6 +109,7 @@ function Signup() {
             borderBottom: "3px solid #FF6262",
             borderLeft: "3px solid #4B51F4",
             borderRadius: "41px",
+            marginTop: { xs: "2rem", sm: "0rem" },
           }}
         >
           <Box
