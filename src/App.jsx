@@ -2,7 +2,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Login from "./pages/Login/Login";
 import Signup from "./pages/Signup/Signup";
 import Homepage from "./pages/Homepage/Homepage";
-import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
+import ProtectedRoute from "./Components/ProtectedRoute/ProtectedRoute";
 import WorkoutPage from "./pages/WorkoutPage/WorkoutPage";
 import Welcome from "./pages/Welcome/Welcome";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
