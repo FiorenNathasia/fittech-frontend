@@ -5,7 +5,6 @@ import Homepage from "./pages/Homepage/Homepage";
 import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
 import WorkoutPage from "./pages/WorkoutPage/WorkoutPage";
 import Welcome from "./pages/Welcome/Welcome";
-import NormalList from "./pages/NormalList/NormalList";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import "@fontsource/bebas-neue";
 import "@fontsource/montserrat";

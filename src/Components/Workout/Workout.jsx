@@ -1,5 +1,4 @@
-import { Link } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 //Styling
@@ -14,7 +13,6 @@ import {
   IconButton,
   useTheme,
 } from "@mui/material";
-import FavoriteBorder from "@mui/icons-material/FavoriteBorder";
 import DeleteIcon from "@mui/icons-material/Delete";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 
@@ -28,7 +26,7 @@ function Workout({ id, title, image, isFavourite, fetchWorkouts }) {
     const token = localStorage.getItem("accessToken");
     try {
       await axios.put(
-        `http://localhost:8080/api/workouts/${id}/favourite`,
+        `${import.meta.env.VITE_API_URL}/api/workouts/${id}/favourite`,
         { is_favourite: !favourite },
         { headers: { Authorization: "Bearer " + token } }
       );
@@ -42,14 +40,11 @@ function Workout({ id, title, image, isFavourite, fetchWorkouts }) {
     setIsDeleting(true);
     const token = localStorage.getItem("accessToken");
     try {
-      const deletedVideo = await axios.delete(
-        `http://localhost:8080/api/workouts/${id}`,
-        {
-          headers: {
-            Authorization: "Bearer " + token,
-          },
-        }
-      );
+      await axios.delete(`import.meta.env.VITE_API_URL/api/workouts/${id}`, {
+        headers: {
+          Authorization: "Bearer " + token,
+        },
+      });
       await fetchWorkouts();
     } catch (error) {
       console.log(error);

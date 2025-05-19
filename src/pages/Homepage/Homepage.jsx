@@ -24,11 +24,14 @@ function Homepage() {
   const fetchWorkoutList = async () => {
     const token = localStorage.getItem("accessToken");
     try {
-      const { data } = await axios.get("http://localhost:8080/api/workouts", {
-        headers: {
-          Authorization: "Bearer " + token,
-        },
-      });
+      const { data } = await axios.get(
+        `${import.meta.env.VITE_API_URL}/api/workouts`,
+        {
+          headers: {
+            Authorization: "Bearer " + token,
+          },
+        }
+      );
       setWorkoutsList(data.data);
     } catch (error) {
       setError(error.response.data.message);
@@ -38,11 +41,14 @@ function Homepage() {
   const fetchUser = async () => {
     const token = localStorage.getItem("accessToken");
     try {
-      const { data } = await axios.get("http://localhost:8080/api/user", {
-        headers: {
-          Authorization: "Bearer " + token,
-        },
-      });
+      const { data } = await axios.get(
+        `${import.meta.env.VITE_API_URL}/api/user`,
+        {
+          headers: {
+            Authorization: "Bearer " + token,
+          },
+        }
+      );
       setUser(data.data);
     } catch (error) {
       setError(error.response.data.message);

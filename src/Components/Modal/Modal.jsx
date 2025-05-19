@@ -24,11 +24,15 @@ function ModalAdd({ closeModal, onSaveComplete }) {
       video_url: url,
     };
     try {
-      await axios.post("http://localhost:8080/api/workouts/", workout, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      await axios.post(
+        `${import.meta.env.VITE_API_URL}/api/workouts/`,
+        workout,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
       closeModal();
       onSaveComplete();
     } catch (error) {

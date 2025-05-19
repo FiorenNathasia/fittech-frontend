@@ -10,7 +10,6 @@ import {
   Stack,
   IconButton,
   Link,
-  useTheme,
   CircularProgress,
 } from "@mui/material";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
@@ -24,7 +23,6 @@ function Login() {
   const [isLogIn, setIsLogIn] = useState(false);
   const [error, setError] = useState(null);
   const navigate = useNavigate();
-  const theme = useTheme();
 
   const handleSubmit = async () => {
     setIsLogIn(true);
@@ -34,7 +32,7 @@ function Login() {
     };
     try {
       const response = await axios.post(
-        "http://localhost:8080/api/auth/login",
+        `${import.meta.env.VITE_API_URL}/api/auth/login`,
         user
       );
       const accessToken = response.data.data.accessToken;

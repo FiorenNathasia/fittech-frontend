@@ -31,7 +31,7 @@ function WorkoutPage() {
     const token = localStorage.getItem("accessToken");
     try {
       const { data } = await axios.get(
-        `http://localhost:8080/api/workouts/${id}`,
+        `${import.meta.env.VITE_API_URL}/api/workouts/${id}`,
         {
           headers: {
             Authorization: "Bearer " + token,

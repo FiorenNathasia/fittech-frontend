@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Box, Typography, Stack, Button } from "@mui/material";
-import { CircularProgress } from "@mui/material";
 import GradientCircular from "../../components/GradientCircular/GradientCircular";
 import pill from "../../assets/pill.png";
 import landingbg from "../../assets/landingbg.mp4";
