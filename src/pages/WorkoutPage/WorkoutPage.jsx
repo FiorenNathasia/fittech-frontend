@@ -2,7 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import ReactPlayer from "react-player";
-import Linear from "../../components/Linear/Linear";
+import Linear from "../../tempComponents/Linear/Linear";
 //Styling
 import {
   Box,
@@ -17,8 +17,8 @@ import {
 } from "@mui/material";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import pill from "../../assets/pill.png";
-import Sidebar from "../../components/Sidebar/Sidebar";
-import CannotDisplay from "../../components/CannotDisplay/CannotDisplay";
+import Sidebar from "../../tempComponents/Sidebar/Sidebar";
+import CannotDisplay from "../../tempComponents/CannotDisplay/CannotDisplay";
 
 function WorkoutPage() {
   const [workout, setWorkout] = useState(null);

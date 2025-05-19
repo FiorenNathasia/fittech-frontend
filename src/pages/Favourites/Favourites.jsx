@@ -1,16 +1,16 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import WorkoutList from "../../components/WorkoutList/WorkoutList";
-import ModalAdd from "../../components/Modal/Modal";
-import Linear from "../../components/Linear/Linear";
+import WorkoutList from "../../tempComponents/WorkoutList/WorkoutList";
+import ModalAdd from "../../tempComponents/Modal/Modal";
+import Linear from "../../tempComponents/Linear/Linear";
 //Styling
 import { Box, useTheme } from "@mui/material";
-import Sidebar from "../../components/Sidebar/Sidebar";
-import Header from "../../components/Header/Header";
-import BottomNavigationTab from "../../components/BottomNavigationTab/BottomNavigationTab";
-import ModalButton from "../../components/ModalButton/ModalButton";
-import CannotDisplay from "../../components/CannotDisplay/CannotDisplay";
+import Sidebar from "../../tempComponents/Sidebar/Sidebar";
+import Header from "../../tempComponents/Header/Header";
+import BottomNavigationTab from "../../tempComponents/BottomNavigationTab/BottomNavigationTab";
+import ModalButton from "../../tempComponents/ModalButton/ModalButton";
+import CannotDisplay from "../../tempComponents/CannotDisplay/CannotDisplay";
 
 function Favourites() {
   const [workoutsList, setWorkoutsList] = useState([]);
