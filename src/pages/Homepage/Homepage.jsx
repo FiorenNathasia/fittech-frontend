@@ -32,6 +32,7 @@ function Homepage() {
           },
         }
       );
+
       setWorkoutsList(data.data);
     } catch (error) {
       setError(error.response.data.message);
