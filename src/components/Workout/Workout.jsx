@@ -40,7 +40,7 @@ function Workout({ id, title, image, isFavourite, fetchWorkouts }) {
     setIsDeleting(true);
     const token = localStorage.getItem("accessToken");
     try {
-      await axios.delete(`import.meta.env.VITE_API_URL/api/workouts/${id}`, {
+      await axios.delete(`${import.meta.env.VITE_API_URL}/api/workouts/${id}`, {
         headers: {
           Authorization: "Bearer " + token,
         },
