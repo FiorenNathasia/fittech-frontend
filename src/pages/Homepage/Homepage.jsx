@@ -1,16 +1,16 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import WorkoutList from "../../tempComponents/WorkoutList/WorkoutList";
-import Sidebar from "../../tempComponents/Sidebar/Sidebar";
-import Header from "../../tempComponents/Header/Header";
-import BottomNavigationTab from "../../tempComponents/BottomNavigationTab/BottomNavigationTab";
-import ModalButton from "../../tempComponents/ModalButton/ModalButton";
-import ModalAdd from "../../tempComponents/Modal/Modal";
-import Linear from "../../tempComponents/Linear/Linear";
+import WorkoutList from "../../components/WorkoutList/WorkoutList";
+import Sidebar from "../../components/Sidebar/Sidebar";
+import Header from "../../components/Header/Header";
+import BottomNavigationTab from "../../components/BottomNavigationTab/BottomNavigationTab";
+import ModalButton from "../../components/ModalButton/ModalButton";
+import ModalAdd from "../../components/Modal/Modal";
+import Linear from "../../components/Linear/Linear";
 //Styling
 import { Box, useTheme } from "@mui/material";
-import CannotDisplay from "../../tempComponents/CannotDisplay/CannotDisplay";
+import CannotDisplay from "../../components/CannotDisplay/CannotDisplay";
 
 function Homepage() {
   const [workoutsList, setWorkoutsList] = useState([]);

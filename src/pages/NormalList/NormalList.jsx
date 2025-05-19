@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
-import WorkoutList from "../../tempComponents/WorkoutList/WorkoutList";
+import WorkoutList from "../../components/WorkoutList/WorkoutList";
 //Styling
 import { Box } from "@mui/material";
 
