@@ -13,7 +13,11 @@ function WorkoutList({ workouts, fetchWorkouts }) {
         marginBottom: { xs: "110px", sm: "0px" },
       }}
     >
-      <Grid2 spacing={1} sx={{ justifyContent: "center" }}>
+      <Grid2
+        spacing={1}
+        container={{ sm: "container" }}
+        sx={{ justifyContent: "center" }}
+      >
         {workouts.map((workout) => (
           <Grid2 item xs={12} sm={6} lg={3} key={workout.id}>
             <Workout
