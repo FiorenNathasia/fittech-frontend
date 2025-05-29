@@ -69,7 +69,7 @@ function Workout({ id, title, image, isFavourite, fetchWorkouts }) {
             boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.1)",
           }}
         >
-          <CardActionArea onClick={page}>
+          <CardActionArea sx={{ padding: 1 }} onClick={page}>
             {/* <Link to={`/workouts/${id}`} style={{ textDecoration: "none" }}> */}
             <CardMedia
               component="img"
