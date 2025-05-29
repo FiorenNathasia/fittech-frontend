@@ -9,6 +9,7 @@ function WorkoutList({ workouts, fetchWorkouts }) {
         width: "100%",
         marginTop: { xs: "100px", sm: "30px" },
         marginBottom: { xs: "110px", sm: "0px" },
+        marginRight: { xs: 1, sm: 0 },
       }}
     >
       <Grid2 spacing={1} sx={{ justifyContent: "center" }}>
