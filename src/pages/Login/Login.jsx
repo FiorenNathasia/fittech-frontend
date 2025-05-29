@@ -51,8 +51,8 @@ function Login() {
 
   //Demo User Login
   const demoUser = {
-    email: "demouser@email.com",
-    password: "123456789",
+    email: "demo@email.com",
+    password: "password",
   };
 
   const demoLoginData = () => {
@@ -245,6 +245,19 @@ function Login() {
                 gap: "15px",
               }}
             >
+              <Typography variant="h3" sx={{ fontSize: "0.9rem" }}>
+                Are you here for a demonstration?{" "}
+                <Link
+                  onClick={demoLoginData}
+                  sx={{
+                    color: "#4B51F4",
+                    textDecoration: "underline",
+                    cursor: "pointer",
+                  }}
+                >
+                  Autofill here
+                </Link>
+              </Typography>
               <Button
                 variant="outlined"
                 onClick={!isLogIn ? handleSubmit : undefined}
@@ -291,19 +304,6 @@ function Login() {
                 Not a member yet?{" "}
                 <Link href="/signup" component="a" sx={{ color: "#4B51F4" }}>
                   Signup Here
-                </Link>
-              </Typography>
-              <Typography variant="h3" sx={{ fontSize: "0.9rem" }}>
-                Are you here for a demonstration?{" "}
-                <Link
-                  onClick={demoLoginData}
-                  sx={{
-                    color: "#4B51F4",
-                    textDecoration: "underline",
-                    cursor: "pointer",
-                  }}
-                >
-                  Autofill here
                 </Link>
               </Typography>
             </Stack>
