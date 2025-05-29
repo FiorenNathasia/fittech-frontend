@@ -96,7 +96,7 @@ function Homepage() {
         <Box
           sx={{
             position: "relative",
-            marginLeft: { xs: 0, sm: 25 },
+            marginLeft: { xs: 0, sm: 0 },
             padding: 2,
             display: "flex",
             flexDirection: "column",
