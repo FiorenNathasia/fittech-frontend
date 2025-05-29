@@ -7,7 +7,7 @@ function WorkoutList({ workouts, fetchWorkouts }) {
     <Box
       sx={{
         width: "100%",
-        maxWidth: "22rem",
+        maxWidth: { xs: "22rem", sm: none },
         margin: "auto",
         marginTop: { xs: "100px", sm: "30px" },
         marginBottom: { xs: "110px", sm: "0px" },
