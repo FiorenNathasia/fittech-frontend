@@ -40,9 +40,9 @@ function BottomNavigationTab({ openModal }) {
           borderTopLeftRadius: "50px",
           borderTopRightRadius: "50px",
           width: "100%",
-          // maxWidth: "22rem",
-          // left: "50%",
-          // transform: "translateX(-50%)",
+          maxWidth: "22rem",
+          left: "50%",
+          transform: "translateX(-50%)",
         }}
       >
         <Paper
