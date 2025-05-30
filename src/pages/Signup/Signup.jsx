@@ -50,7 +50,7 @@ function Signup() {
   };
 
   const welcome = () => {
-    navigate("/welcome");
+    navigate("/");
   };
 
   return (
