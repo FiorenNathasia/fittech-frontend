@@ -46,7 +46,7 @@ function Login() {
   };
 
   const welcome = () => {
-    navigate("/welcome");
+    navigate("/");
   };
 
   //Demo User Login
