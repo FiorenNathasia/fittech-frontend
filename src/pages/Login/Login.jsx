@@ -165,7 +165,7 @@ function Login() {
               sx={{
                 mt: 1,
                 width: "15rem",
-                backgroundColor: "rgba(255, 255, 255, 0.4)",
+                backgroundColor: "rgba(239, 239, 239, 0.8)",
                 color: "#4B51F4",
                 fontWeight: "300",
                 fontSize: "0.85rem",
