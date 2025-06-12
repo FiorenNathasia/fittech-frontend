@@ -337,7 +337,7 @@ function Signup() {
               </Button>
               <Typography variant="h3" sx={{ fontSize: "1rem" }}>
                 Already a member?{" "}
-                <Link href="/login" component="a" sx={{ color: "#4B51F4" }}>
+                <Link href="/login" component="a" sx={{ color: "#353AA8" }}>
                   Login Here
                 </Link>
               </Typography>

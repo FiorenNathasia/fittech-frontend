@@ -1,8 +1,9 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link as RouterLink } from "react-router-dom";
 import axios from "axios";
 //Styling
 import {
+  Alert,
   Box,
   TextField,
   Typography,
@@ -16,6 +17,7 @@ import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import pill from "../../assets/pill.png";
 import desktopbg from "../../assets/dekstopbg.jpg";
 import mobile from "../../assets/mobilebg.jpg";
+import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
 
 function Login() {
   const [email, setEmail] = useState("");
@@ -49,17 +51,10 @@ function Login() {
     navigate("/");
   };
 
-  //Demo User Login
-  const demoUser = {
-    email: "demo@email.com",
-    password: "password",
+  const handleSetDemoAccount = () => {
+    setEmail("demo@email.com");
+    setPassword("password");
   };
-
-  const demoLoginData = () => {
-    setEmail(demoUser.email);
-    setPassword(demoUser.password);
-  };
-
   return (
     <>
       <Box
@@ -108,7 +103,7 @@ function Login() {
             flexDirection: "column",
             backgroundColor: "rgba(217, 217, 217, 0.5)",
             backdropFilter: "blur(10px)",
-            height: "405px",
+            height: "420px",
             width: "346px",
             borderStyle: "solid",
             borderTop: "3px solid #4B51F4",
@@ -132,7 +127,7 @@ function Login() {
               sx={{
                 color: "#4B51F4",
                 position: "absolute",
-                top: 50,
+                top: 25,
                 left: 35,
               }}
             >
@@ -163,14 +158,38 @@ function Login() {
                 }}
               />
             </Typography>
+            <Alert
+              severity="success"
+              icon={<CheckCircleOutlineIcon style={{ color: "#4B51F4" }} />}
+              sx={{
+                mt: 1,
+                width: "15rem",
+                backgroundColor: "rgba(255, 255, 255, 0.4)",
+                color: "#4B51F4",
+                fontWeight: "300",
+                fontSize: "0.85rem",
+                borderRadius: "10px",
+                backdropFilter: "blur(4px)",
+              }}
+            >
+              <Typography color="black">
+                Here to demo the app?{" "}
+                <Link
+                  onClick={handleSetDemoAccount}
+                  sx={{ cursor: "pointer", color: "#4B51F4" }}
+                >
+                  Use this account
+                </Link>
+              </Typography>
+            </Alert>
             <Box
               sx={{
                 display: "flex",
                 justifyContent: "center",
                 flexDirection: "column",
                 alignItems: "center",
-                gap: "10px",
-                paddingTop: "1.25rem",
+                gap: "15px",
+                // paddingTop: "1.25rem",
                 paddingBottom: "0.5rem",
               }}
             >
@@ -245,19 +264,6 @@ function Login() {
                 gap: "15px",
               }}
             >
-              <Typography variant="h3" sx={{ fontSize: "0.9rem" }}>
-                Are you here for a demonstration?{" "}
-                <Link
-                  onClick={demoLoginData}
-                  sx={{
-                    color: "#4B51F4",
-                    textDecoration: "underline",
-                    cursor: "pointer",
-                  }}
-                >
-                  Autofill here
-                </Link>
-              </Typography>
               <Button
                 variant="outlined"
                 onClick={!isLogIn ? handleSubmit : undefined}
@@ -300,9 +306,9 @@ function Login() {
                   "LOGIN"
                 )}
               </Button>
-              <Typography variant="h3" sx={{ fontSize: "1rem" }}>
+              <Typography variant="h3" sx={{ fontSize: "1rem", pb: 1 }}>
                 Not a member yet?{" "}
-                <Link href="/signup" component="a" sx={{ color: "#4B51F4" }}>
+                <Link href="/signup" component="a" sx={{ color: "#353AA8" }}>
                   Signup Here
                 </Link>
               </Typography>
