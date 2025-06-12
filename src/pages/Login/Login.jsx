@@ -141,6 +141,7 @@ function Login() {
                 fontSize: "2rem",
                 paddingBottom: "5px",
                 fontWeight: "600",
+                paddingTop: 3,
               }}
             >
               LOGIN
@@ -306,7 +307,7 @@ function Login() {
                   "LOGIN"
                 )}
               </Button>
-              <Typography variant="h3" sx={{ fontSize: "1rem", pb: 1 }}>
+              <Typography variant="h3" sx={{ fontSize: "1rem", pb: 2 }}>
                 Not a member yet?{" "}
                 <Link href="/signup" component="a" sx={{ color: "#353AA8" }}>
                   Signup Here
