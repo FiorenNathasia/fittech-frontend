@@ -1,8 +1,48 @@
-# React + Vite
+# FitTech 🏋️‍♂️
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+**Fullstack Fitness Application**
 
-Currently, two official plugins are available:
+## 📽️ Demo Videos
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+### 📱 Mobile View
+
+![Mobile Demo](assets/gif/mobile.gif)
+
+### 💻 Desktop View
+
+![Desktop Demo](assets/gif/desktop.gif)
+
+---
+
+## 🧠 Overview
+
+**FitTech** is an intelligent full-stack fitness planner that empowers users to create and manage personalized workout plans — even offline. The app integrates OpenAI’s ChatGPT API to provide interactive, real-time workout guidance and instructions, delivering an engaging fitness experience anytime, anywhere.
+
+---
+
+## 🚀 Features
+
+- 🧘‍♂️ **Offline Mode:** Plan and view workouts without an internet connection.
+- 💬 **AI-Powered Coaching:** Get custom workout instructions and feedback via ChatGPT.
+- 📱 **Responsive Design:** Seamless experience across mobile and desktop devices.
+- 📊 **PostgreSQL Backend:** Efficient and scalable data handling.
+- ⚡ **Fast & Intuitive UI:** Built with React for smooth interaction and routing.
+
+---
+
+## 🛠️ Tech Stack
+
+- **Frontend:** React (with responsive design)
+- **Backend:** Express.js
+- **Database:** PostgreSQL
+- **AI Integration:** OpenAI ChatGPT API
+
+---
+
+## 🧑‍💻 Getting Started
+
+### Prerequisites
+
+- Node.js & npm
+- PostgreSQL database
+- OpenAI API key
