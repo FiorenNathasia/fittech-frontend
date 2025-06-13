@@ -4,13 +4,13 @@
 
 ## 📽️ Demo Videos
 
-### 📱 Mobile View
-
-![Mobile Demo](public/gif/mobile.gif)
-
 ### 💻 Desktop View
 
 ![Desktop Demo](public/gif/desktop.gif)
+
+### 📱 Mobile View
+
+![Mobile Demo](public/gif/mobile.gif)
 
 ---
 
@@ -38,11 +38,3 @@
 - **AI Integration:** OpenAI ChatGPT API
 
 ---
-
-## 🧑‍💻 Getting Started
-
-### Prerequisites
-
-- Node.js & npm
-- PostgreSQL database
-- OpenAI API key
