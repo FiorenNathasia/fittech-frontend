@@ -1,6 +1,4 @@
-# FitTech 🏋️‍♂️
-
-**Fullstack Fitness Application**
+# FitTech 🏋️‍♂️ (Fullstack Fitness Application)
 
 ## 📽️ Demo Videos
 
