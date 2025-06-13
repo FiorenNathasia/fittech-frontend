@@ -1,5 +1,7 @@
 # FitTech 🏋️‍♂️ (Fullstack Fitness Application)
 
+---
+
 ## 📽️ Demo Videos
 
 ### 💻 Desktop View
