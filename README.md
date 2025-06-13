@@ -6,11 +6,11 @@
 
 ### 📱 Mobile View
 
-![Mobile Demo](assets/gif/mobile.gif)
+![Mobile Demo](public/assets/gif/mobile.gif)
 
 ### 💻 Desktop View
 
-![Desktop Demo](assets/gif/desktop.gif)
+![Desktop Demo](public/assets/gif/desktop.gif)
 
 ---
 
