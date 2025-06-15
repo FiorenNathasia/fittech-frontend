@@ -9,11 +9,9 @@ import {
   Typography,
   Button,
   Stack,
-  IconButton,
   Link,
   CircularProgress,
 } from "@mui/material";
-import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import pill from "../../assets/pill.png";
 import desktopbg from "../../assets/dekstopbg.jpg";
 import mobile from "../../assets/mobilebg.jpg";
@@ -47,10 +45,6 @@ function Signup() {
       setError(error.response.data.message);
     }
     setIsSignUp(false);
-  };
-
-  const welcome = () => {
-    navigate("/");
   };
 
   return (
@@ -121,17 +115,6 @@ function Signup() {
               gap: "15px",
             }}
           >
-            <IconButton
-              onClick={welcome}
-              sx={{
-                color: "#4B51F4",
-                position: "absolute",
-                top: 50,
-                left: 35,
-              }}
-            >
-              <ArrowBackIcon />
-            </IconButton>
             <Typography
               variant="h2"
               sx={{

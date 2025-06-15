@@ -4,7 +4,6 @@ import Signup from "./pages/Signup/Signup";
 import Homepage from "./pages/Homepage/Homepage";
 import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
 import WorkoutPage from "./pages/WorkoutPage/WorkoutPage";
-import Welcome from "./pages/Welcome/Welcome";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import "@fontsource/bebas-neue";
 import "@fontsource/montserrat";
@@ -60,11 +59,10 @@ function App() {
       <ThemeProvider theme={theme}>
         <BrowserRouter>
           <Routes>
-            <Route path="/" element={<Welcome />} />
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<Signup />} />
             <Route
-              path="/homepage"
+              path="/"
               element={
                 <ProtectedRoute>
                   <Homepage />
