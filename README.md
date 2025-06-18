@@ -1,6 +1,6 @@
 # FitTech 🏋️‍♂️ (Fullstack Fitness Application)
 
-[GitHub Repo](https://github.com/FiorenNathasia/thrivevibe-backend)
+**Project's Backend:** (https://github.com/FiorenNathasia/thrivevibe-backend)
 
 ## 📽️ Demo Videos
 
@@ -22,9 +22,7 @@ A key feature is its AI-powered tool that converts YouTube workout videos into s
 
 ---
 
-## 🔍 AI-Powered Video Summarizer
-
-The video summarizer allows users to consume long-form YouTube workout content in a structured, interactive format:
+## 🔍 How is it done?
 
 - Extracts video transcripts from YouTube
 - Uses OpenAI’s ChatGPT to generate structured JSON representing workout steps
