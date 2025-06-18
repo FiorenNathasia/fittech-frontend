@@ -1,6 +1,6 @@
 # FitTech 🏋️‍♂️ (Fullstack Fitness Application)
 
-**Project's Backend:** (https://github.com/FiorenNathasia/thrivevibe-backend)
+**Project's Backend:** https://github.com/FiorenNathasia/thrivevibe-backend
 
 ### 💻 Desktop View
 
