@@ -2,8 +2,6 @@
 
 **Project's Backend:** (https://github.com/FiorenNathasia/thrivevibe-backend)
 
-## 📽️ Demo Videos
-
 ### 💻 Desktop View
 
 ![Desktop Demo](public/gif/desktop.gif)
