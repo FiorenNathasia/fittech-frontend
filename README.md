@@ -1,5 +1,7 @@
 # FitTech 🏋️‍♂️ (Fullstack Fitness Application)
 
+[GitHub Repo](https://github.com/FiorenNathasia/thrivevibe-backend)
+
 ## 📽️ Demo Videos
 
 ### 💻 Desktop View
@@ -14,15 +16,27 @@
 
 ## 🧠 Overview
 
-**FitTech** is an intelligent full-stack fitness planner that empowers users to create and manage personalized workout plans — even offline. The app integrates OpenAI’s ChatGPT API to provide interactive, real-time workout guidance and instructions, delivering an engaging fitness experience anytime, anywhere.
+**FitTech** is a full-stack fitness application designed to help users create, manage, and follow workout videos anytime, anywhere.
+
+A key feature is its AI-powered tool that converts YouTube workout videos into step-by-step guides, enabling users to follow routines without watching full videos. This is especially useful in low-connectivity environments like gyms or during travel.
+
+---
+
+## 🔍 AI-Powered Video Summarizer
+
+The video summarizer allows users to consume long-form YouTube workout content in a structured, interactive format:
+
+- Extracts video transcripts from YouTube
+- Uses OpenAI’s ChatGPT to generate structured JSON representing workout steps
+- Frontend renders this JSON into readable, step-by-step routines
+- Includes workout favouriting and a responsive design for cross-device access
 
 ---
 
 ## 🚀 Features
 
-- 🧘‍♂️ **Offline Mode:** Plan and view workouts without an internet connection.
-- 💬 **AI-Powered Coaching:** Get custom workout instructions and feedback via ChatGPT.
-- 📱 **Responsive Design:** Seamless experience across mobile and desktop devices.
+- 💬 **AI-Generated:** Get custom workout step by step instructions via ChatGPT.
+- 📱 **Responsive Design:** Optimized for both mobile and desktop devices.
 - 📊 **PostgreSQL Backend:** Efficient and scalable data handling.
 - ⚡ **Fast & Intuitive UI:** Built with React for smooth interaction and routing.
 
@@ -34,5 +48,6 @@
 - **Backend:** Express.js
 - **Database:** PostgreSQL
 - **AI Integration:** OpenAI ChatGPT API
+- **Authentication:** JWT (OAuth)
 
 ---
