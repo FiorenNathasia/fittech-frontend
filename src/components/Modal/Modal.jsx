@@ -16,7 +16,6 @@ import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
 
 function ModalAdd({ closeModal, onSaveComplete }) {
   const [url, setUrl] = useState("");
-  const [link, setLink] = useState("");
   const [isSaving, setIsSaving] = useState(false);
   const [error, setError] = useState(null);
   const theme = useTheme();
@@ -46,7 +45,7 @@ function ModalAdd({ closeModal, onSaveComplete }) {
   };
 
   const handleSetVideoLink = () => {
-    setLink("https://youtu.be/YJ3QuchrUNA?si=mdAwMWJkNpMS95bh");
+    setUrl("https://youtu.be/_Zem0_qsDg0?si=fR77He3inReiu9IT");
   };
 
   return (
@@ -84,7 +83,7 @@ function ModalAdd({ closeModal, onSaveComplete }) {
             icon={<CheckCircleOutlineIcon style={{ color: "#4B51F4" }} />}
             sx={{
               mt: 1,
-              width: "15rem",
+              width: "21rem",
               backgroundColor: "rgba(239, 239, 239, 0.8)",
               color: "#4B51F4",
               fontWeight: "300",
@@ -94,12 +93,11 @@ function ModalAdd({ closeModal, onSaveComplete }) {
             }}
           >
             <Typography color="black">
-              Here to demo the app?{" "}
               <Link
                 onClick={handleSetVideoLink}
                 sx={{ cursor: "pointer", color: "#4B51F4" }}
               >
-                Use this account
+                Click here for a workout link!{" "}
               </Link>
             </Typography>
           </Alert>
