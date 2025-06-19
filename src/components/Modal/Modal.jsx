@@ -13,6 +13,7 @@ import {
 
 function ModalAdd({ closeModal, onSaveComplete }) {
   const [url, setUrl] = useState("");
+  const [link, setLink] = useState("");
   const [isSaving, setIsSaving] = useState(false);
   const [error, setError] = useState(null);
   const theme = useTheme();
@@ -39,6 +40,10 @@ function ModalAdd({ closeModal, onSaveComplete }) {
       setError(error.response.data.message);
     }
     setIsSaving(false);
+  };
+
+  const handleSetVideoLink = () => {
+    setLink("https://youtu.be/YJ3QuchrUNA?si=mdAwMWJkNpMS95bh");
   };
 
   return (
