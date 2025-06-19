@@ -39,7 +39,7 @@ function Login() {
       const accessToken = response.data.data.accessToken;
       localStorage.setItem("accessToken", accessToken);
 
-      navigate("/homepage");
+      navigate("/");
     } catch (error) {
       setError(error.response.data.message);
     }
