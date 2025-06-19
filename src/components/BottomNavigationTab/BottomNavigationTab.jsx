@@ -19,7 +19,7 @@ function BottomNavigationTab({ openModal }) {
   const currentPath = location.pathname;
 
   const homepage = () => {
-    navigate("/homepage");
+    navigate("/");
   };
 
   const favourites = () => {
@@ -73,12 +73,12 @@ function BottomNavigationTab({ openModal }) {
             }}
           >
             <BottomNavigationAction
-              value="/homepage"
+              value="/"
               icon={
                 <HomeIcon
                   sx={{
                     fontSize: "2.5rem",
-                    color: currentPath === "/homepage" ? "#4B51F4" : "#a1a1a1",
+                    color: currentPath === "/" ? "#4B51F4" : "#a1a1a1",
                   }}
                 />
               }

@@ -54,7 +54,7 @@ function WorkoutPage() {
   }, []);
 
   const back = () => {
-    navigate("/homepage");
+    navigate("/");
   };
   if (error) {
     return <CannotDisplay />;

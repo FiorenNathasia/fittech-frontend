@@ -9,7 +9,10 @@ import {
   Modal,
   useTheme,
   CircularProgress,
+  Alert,
+  Link,
 } from "@mui/material";
+import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
 
 function ModalAdd({ closeModal, onSaveComplete }) {
   const [url, setUrl] = useState("");
@@ -76,6 +79,30 @@ function ModalAdd({ closeModal, onSaveComplete }) {
           >
             Add New Workout
           </Typography>
+          <Alert
+            severity="success"
+            icon={<CheckCircleOutlineIcon style={{ color: "#4B51F4" }} />}
+            sx={{
+              mt: 1,
+              width: "15rem",
+              backgroundColor: "rgba(239, 239, 239, 0.8)",
+              color: "#4B51F4",
+              fontWeight: "300",
+              fontSize: "0.85rem",
+              borderRadius: "10px",
+              backdropFilter: "blur(4px)",
+            }}
+          >
+            <Typography color="black">
+              Here to demo the app?{" "}
+              <Link
+                onClick={handleSetVideoLink}
+                sx={{ cursor: "pointer", color: "#4B51F4" }}
+              >
+                Use this account
+              </Link>
+            </Typography>
+          </Alert>
 
           <TextField
             fullWidth

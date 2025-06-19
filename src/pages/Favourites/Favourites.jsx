@@ -69,7 +69,7 @@ function Favourites() {
   }, []);
 
   const navigateToHome = () => {
-    navigate("/homepage");
+    navigate("/");
   };
 
   if (error) {

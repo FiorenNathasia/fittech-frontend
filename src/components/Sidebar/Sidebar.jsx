@@ -20,7 +20,7 @@ function Sidebar({ firstName }) {
   const isActive = (path) => location.pathname === path;
 
   const homepage = () => {
-    navigate("/homepage");
+    navigate("/");
   };
 
   const logout = () => {
@@ -72,14 +72,14 @@ function Sidebar({ firstName }) {
           </Typography>
           <ListItem
             onClick={homepage}
-            selected={isActive("/homepage")}
+            selected={isActive("/")}
             sx={{ marginTop: "1.5rem" }}
           >
             <ListItemIcon>
               <HomeIcon
                 sx={{
                   fontSize: "2.5rem",
-                  color: isActive("/homepage") ? "#4B51F4" : "#a1a1a1",
+                  color: isActive("/") ? "#4B51F4" : "#a1a1a1",
                 }}
               />
             </ListItemIcon>
